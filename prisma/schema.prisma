@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Usuario {
+  id            String     @id @default(cuid())
+  username      String     @unique
+  totalGlicemia Glicemia[]
+  fitas         Fitas?
+  createdAt     DateTime   @default(now())
+}
+
+model Glicemia {
+  id              String   @id @default(cuid())
+  total           Int
+  aplicouInsulina Boolean  @default(false)
+  dataHora        DateTime
+  observacao      String?
+  createdAt       DateTime @default(now())
+
+  usuarioId String
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+}
+
+model Fitas {
+  id         String   @id @default(cuid())
+  quantidade Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  usuarioId String  @unique
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+}
