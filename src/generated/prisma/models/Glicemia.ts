@@ -232,7 +232,7 @@ export type GlicemiaWhereInput = {
   observacao?: Prisma.StringNullableFilter<"Glicemia"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
   usuarioId?: Prisma.StringFilter<"Glicemia"> | string
-  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
+  usuario?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type GlicemiaOrderByWithRelationInput = {
@@ -243,7 +243,7 @@ export type GlicemiaOrderByWithRelationInput = {
   observacao?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
-  usuario?: Prisma.UsuarioOrderByWithRelationInput
+  usuario?: Prisma.UserOrderByWithRelationInput
 }
 
 export type GlicemiaWhereUniqueInput = Prisma.AtLeast<{
@@ -257,7 +257,7 @@ export type GlicemiaWhereUniqueInput = Prisma.AtLeast<{
   observacao?: Prisma.StringNullableFilter<"Glicemia"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
   usuarioId?: Prisma.StringFilter<"Glicemia"> | string
-  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
+  usuario?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type GlicemiaOrderByWithAggregationInput = {
@@ -295,7 +295,7 @@ export type GlicemiaCreateInput = {
   dataHora: Date | string
   observacao?: string | null
   createdAt?: Date | string
-  usuario: Prisma.UsuarioCreateNestedOneWithoutTotalGlicemiaInput
+  usuario: Prisma.UserCreateNestedOneWithoutTotalGlicemiaInput
 }
 
 export type GlicemiaUncheckedCreateInput = {
@@ -315,7 +315,7 @@ export type GlicemiaUpdateInput = {
   dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   observacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutTotalGlicemiaNestedInput
+  usuario?: Prisma.UserUpdateOneRequiredWithoutTotalGlicemiaNestedInput
 }
 
 export type GlicemiaUncheckedUpdateInput = {
@@ -357,16 +357,6 @@ export type GlicemiaUncheckedUpdateManyInput = {
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type GlicemiaListRelationFilter = {
-  every?: Prisma.GlicemiaWhereInput
-  some?: Prisma.GlicemiaWhereInput
-  none?: Prisma.GlicemiaWhereInput
-}
-
-export type GlicemiaOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type GlicemiaCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   total?: Prisma.SortOrder
@@ -403,6 +393,40 @@ export type GlicemiaMinOrderByAggregateInput = {
 
 export type GlicemiaSumOrderByAggregateInput = {
   total?: Prisma.SortOrder
+}
+
+export type GlicemiaListRelationFilter = {
+  every?: Prisma.GlicemiaWhereInput
+  some?: Prisma.GlicemiaWhereInput
+  none?: Prisma.GlicemiaWhereInput
+}
+
+export type GlicemiaOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type StringFieldUpdateOperationsInput = {
+  set?: string
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type GlicemiaCreateNestedManyWithoutUsuarioInput = {
@@ -445,22 +469,6 @@ export type GlicemiaUncheckedUpdateManyWithoutUsuarioNestedInput = {
   update?: Prisma.GlicemiaUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.GlicemiaUpdateWithWhereUniqueWithoutUsuarioInput[]
   updateMany?: Prisma.GlicemiaUpdateManyWithWhereWithoutUsuarioInput | Prisma.GlicemiaUpdateManyWithWhereWithoutUsuarioInput[]
   deleteMany?: Prisma.GlicemiaScalarWhereInput | Prisma.GlicemiaScalarWhereInput[]
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
 }
 
 export type GlicemiaCreateWithoutUsuarioInput = {
@@ -566,7 +574,7 @@ export type GlicemiaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   observacao?: boolean
   createdAt?: boolean
   usuarioId?: boolean
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["glicemia"]>
 
 export type GlicemiaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -577,7 +585,7 @@ export type GlicemiaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   observacao?: boolean
   createdAt?: boolean
   usuarioId?: boolean
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["glicemia"]>
 
 export type GlicemiaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -588,7 +596,7 @@ export type GlicemiaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   observacao?: boolean
   createdAt?: boolean
   usuarioId?: boolean
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["glicemia"]>
 
 export type GlicemiaSelectScalar = {
@@ -603,19 +611,19 @@ export type GlicemiaSelectScalar = {
 
 export type GlicemiaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "total" | "aplicouInsulina" | "dataHora" | "observacao" | "createdAt" | "usuarioId", ExtArgs["result"]["glicemia"]>
 export type GlicemiaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type GlicemiaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type GlicemiaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $GlicemiaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Glicemia"
   objects: {
-    usuario: Prisma.$UsuarioPayload<ExtArgs>
+    usuario: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1019,7 +1027,7 @@ readonly fields: GlicemiaFieldRefs;
  */
 export interface Prisma__GlicemiaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  usuario<T extends Prisma.UsuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UsuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  usuario<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

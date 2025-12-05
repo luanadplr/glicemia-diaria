@@ -208,7 +208,7 @@ export type FitasWhereInput = {
   quantidade?: Prisma.IntFilter<"Fitas"> | number
   createdAt?: Prisma.DateTimeFilter<"Fitas"> | Date | string
   usuarioId?: Prisma.StringFilter<"Fitas"> | string
-  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
+  usuario?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type FitasOrderByWithRelationInput = {
@@ -216,7 +216,7 @@ export type FitasOrderByWithRelationInput = {
   quantidade?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
-  usuario?: Prisma.UsuarioOrderByWithRelationInput
+  usuario?: Prisma.UserOrderByWithRelationInput
 }
 
 export type FitasWhereUniqueInput = Prisma.AtLeast<{
@@ -227,7 +227,7 @@ export type FitasWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.FitasWhereInput | Prisma.FitasWhereInput[]
   quantidade?: Prisma.IntFilter<"Fitas"> | number
   createdAt?: Prisma.DateTimeFilter<"Fitas"> | Date | string
-  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
+  usuario?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "usuarioId">
 
 export type FitasOrderByWithAggregationInput = {
@@ -256,7 +256,7 @@ export type FitasCreateInput = {
   id?: string
   quantidade?: number
   createdAt?: Date | string
-  usuario: Prisma.UsuarioCreateNestedOneWithoutFitasInput
+  usuario: Prisma.UserCreateNestedOneWithoutFitasInput
 }
 
 export type FitasUncheckedCreateInput = {
@@ -270,7 +270,7 @@ export type FitasUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutFitasNestedInput
+  usuario?: Prisma.UserUpdateOneRequiredWithoutFitasNestedInput
 }
 
 export type FitasUncheckedUpdateInput = {
@@ -300,11 +300,6 @@ export type FitasUncheckedUpdateManyInput = {
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type FitasNullableScalarRelationFilter = {
-  is?: Prisma.FitasWhereInput | null
-  isNot?: Prisma.FitasWhereInput | null
-}
-
 export type FitasCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   quantidade?: Prisma.SortOrder
@@ -332,6 +327,11 @@ export type FitasMinOrderByAggregateInput = {
 
 export type FitasSumOrderByAggregateInput = {
   quantidade?: Prisma.SortOrder
+}
+
+export type FitasNullableScalarRelationFilter = {
+  is?: Prisma.FitasWhereInput | null
+  isNot?: Prisma.FitasWhereInput | null
 }
 
 export type FitasCreateNestedOneWithoutUsuarioInput = {
@@ -413,7 +413,7 @@ export type FitasSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   quantidade?: boolean
   createdAt?: boolean
   usuarioId?: boolean
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["fitas"]>
 
 export type FitasSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -421,7 +421,7 @@ export type FitasSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   quantidade?: boolean
   createdAt?: boolean
   usuarioId?: boolean
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["fitas"]>
 
 export type FitasSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -429,7 +429,7 @@ export type FitasSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   quantidade?: boolean
   createdAt?: boolean
   usuarioId?: boolean
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["fitas"]>
 
 export type FitasSelectScalar = {
@@ -441,19 +441,19 @@ export type FitasSelectScalar = {
 
 export type FitasOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "quantidade" | "createdAt" | "usuarioId", ExtArgs["result"]["fitas"]>
 export type FitasInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type FitasIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type FitasIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $FitasPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Fitas"
   objects: {
-    usuario: Prisma.$UsuarioPayload<ExtArgs>
+    usuario: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -854,7 +854,7 @@ readonly fields: FitasFieldRefs;
  */
 export interface Prisma__FitasClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  usuario<T extends Prisma.UsuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UsuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  usuario<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
