@@ -173,7 +173,7 @@ export type UserGroupByOutputType = {
   image: string | null
   createdAt: Date
   updatedAt: Date
-  username: string
+  username: string | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -205,7 +205,7 @@ export type UserWhereInput = {
   image?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  username?: Prisma.StringFilter<"User"> | string
+  username?: Prisma.StringNullableFilter<"User"> | string | null
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   totalGlicemia?: Prisma.GlicemiaListRelationFilter
@@ -220,7 +220,7 @@ export type UserOrderByWithRelationInput = {
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  username?: Prisma.SortOrder
+  username?: Prisma.SortOrderInput | Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   totalGlicemia?: Prisma.GlicemiaOrderByRelationAggregateInput
@@ -253,7 +253,7 @@ export type UserOrderByWithAggregationInput = {
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  username?: Prisma.SortOrder
+  username?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -270,7 +270,7 @@ export type UserScalarWhereWithAggregatesInput = {
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  username?: Prisma.StringWithAggregatesFilter<"User"> | string
+  username?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -281,7 +281,7 @@ export type UserCreateInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaCreateNestedManyWithoutUsuarioInput
@@ -296,7 +296,7 @@ export type UserUncheckedCreateInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaUncheckedCreateNestedManyWithoutUsuarioInput
@@ -311,7 +311,7 @@ export type UserUpdateInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUpdateManyWithoutUsuarioNestedInput
@@ -326,7 +326,7 @@ export type UserUncheckedUpdateInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUncheckedUpdateManyWithoutUsuarioNestedInput
@@ -341,7 +341,7 @@ export type UserCreateManyInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -352,7 +352,7 @@ export type UserUpdateManyMutationInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -363,7 +363,7 @@ export type UserUncheckedUpdateManyInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserScalarRelationFilter = {
@@ -468,7 +468,7 @@ export type UserCreateWithoutTotalGlicemiaInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   fitas?: Prisma.FitasCreateNestedOneWithoutUsuarioInput
@@ -482,7 +482,7 @@ export type UserUncheckedCreateWithoutTotalGlicemiaInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   fitas?: Prisma.FitasUncheckedCreateNestedOneWithoutUsuarioInput
@@ -512,7 +512,7 @@ export type UserUpdateWithoutTotalGlicemiaInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   fitas?: Prisma.FitasUpdateOneWithoutUsuarioNestedInput
@@ -526,7 +526,7 @@ export type UserUncheckedUpdateWithoutTotalGlicemiaInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   fitas?: Prisma.FitasUncheckedUpdateOneWithoutUsuarioNestedInput
@@ -540,7 +540,7 @@ export type UserCreateWithoutFitasInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaCreateNestedManyWithoutUsuarioInput
@@ -554,7 +554,7 @@ export type UserUncheckedCreateWithoutFitasInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaUncheckedCreateNestedManyWithoutUsuarioInput
@@ -584,7 +584,7 @@ export type UserUpdateWithoutFitasInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUpdateManyWithoutUsuarioNestedInput
@@ -598,7 +598,7 @@ export type UserUncheckedUpdateWithoutFitasInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUncheckedUpdateManyWithoutUsuarioNestedInput
@@ -612,7 +612,7 @@ export type UserCreateWithoutSessionsInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaCreateNestedManyWithoutUsuarioInput
   fitas?: Prisma.FitasCreateNestedOneWithoutUsuarioInput
@@ -626,7 +626,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaUncheckedCreateNestedManyWithoutUsuarioInput
   fitas?: Prisma.FitasUncheckedCreateNestedOneWithoutUsuarioInput
@@ -656,7 +656,7 @@ export type UserUpdateWithoutSessionsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUpdateManyWithoutUsuarioNestedInput
   fitas?: Prisma.FitasUpdateOneWithoutUsuarioNestedInput
@@ -670,7 +670,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUncheckedUpdateManyWithoutUsuarioNestedInput
   fitas?: Prisma.FitasUncheckedUpdateOneWithoutUsuarioNestedInput
@@ -684,7 +684,7 @@ export type UserCreateWithoutAccountsInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaCreateNestedManyWithoutUsuarioInput
   fitas?: Prisma.FitasCreateNestedOneWithoutUsuarioInput
@@ -698,7 +698,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  username: string
+  username?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaUncheckedCreateNestedManyWithoutUsuarioInput
   fitas?: Prisma.FitasUncheckedCreateNestedOneWithoutUsuarioInput
@@ -728,7 +728,7 @@ export type UserUpdateWithoutAccountsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUpdateManyWithoutUsuarioNestedInput
   fitas?: Prisma.FitasUpdateOneWithoutUsuarioNestedInput
@@ -742,7 +742,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUncheckedUpdateManyWithoutUsuarioNestedInput
   fitas?: Prisma.FitasUncheckedUpdateOneWithoutUsuarioNestedInput
@@ -873,7 +873,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     image: string | null
     createdAt: Date
     updatedAt: Date
-    username: string
+    username: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }

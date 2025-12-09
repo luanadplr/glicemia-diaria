@@ -1,0 +1,36 @@
+/* 
+
+Registrar um novo usuário
+
+*/
+
+import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
+import * as z from "zod";
+
+export const signupSchema = z.object({
+  email: z.string().email({ message: "Email inválido" }),
+  password: z.string().min(6, "Senha deve ter pelo menos 6 caracteres"),
+  name: z.string().min(1, "O nome é obrigatório"),
+});
+
+export type signupValues = z.infer<typeof signupSchema>;
+
+export async function novoUsuario(formData: signupValues) {
+  const { data, error } = await authClient.signUp.email(
+    {
+      email: formData.email,
+      password: formData.password,
+      name: formData.name,
+    },
+    {
+      onSuccess: (context) => {
+        console.log("Cadastro realizado com sucesso:", context);
+        redirect("/cadastro/dados");
+      },
+      onError: (context) => {
+        console.log("Erro no cadastro:", context);
+      },
+    }
+  );
+}

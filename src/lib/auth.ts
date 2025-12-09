@@ -10,7 +10,7 @@ export const auth = betterAuth({
   emailAndPassword: { enabled: true, requireEmailVerification: false },
   user: {
     additionalFields: {
-      username: { type: "string", required: true },
+      username: { type: "string", required: false },
     },
   },
 });

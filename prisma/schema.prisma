@@ -48,7 +48,7 @@ model User {
   @@unique([email])
   @@map("user")
 
-  username String  @unique
+  username String?  @unique
   totalGlicemia Glicemia[]
   fitas         Fitas?
 }
