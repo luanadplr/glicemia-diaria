@@ -6,6 +6,7 @@ Registrar um novo usuário
 
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
+import { toast } from "sonner";
 import * as z from "zod";
 
 export const signupSchema = z.object({
@@ -29,7 +30,10 @@ export async function novoUsuario(formData: signupValues) {
         redirect("/cadastro/dados");
       },
       onError: (context) => {
-        console.log("Erro no cadastro:", context);
+        if (context.error.status === 422) {
+          toast.error("Email já cadastrado");
+        }
+        redirect("/login");
       },
     }
   );

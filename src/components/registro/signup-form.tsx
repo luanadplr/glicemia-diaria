@@ -5,26 +5,19 @@ import { useForm } from "react-hook-form";
 import { Form } from "../ui/form";
 import { Button } from "../ui/button";
 import { useState } from "react";
-import { Field, FieldError, FieldLabel } from "../ui/field";
+import { Field, FieldError } from "../ui/field";
 import { Input } from "../ui/input";
-import {
-  Stepper,
-  StepperIndicator,
-  StepperItem,
-  StepperTrigger,
-} from "@/components/ui/stepper";
 import { signupValues, novoUsuario } from "@/service/auth";
+import { Logo } from "../logo";
+import { Card, CardHeader, CardDescription, CardContent } from "../ui/card";
 
 const signupSchema = z.object({
-  email: z.string().email({ message: "Email inválido" }),
-  password: z.string().min(6, "Senha deve ter pelo menos 6 caracteres"),
+  email: z.string().email({ message: "Insira um email válido" }),
+  password: z.string().min(6, "Sua senha deve ter pelo menos 6 caracteres"),
   name: z.string().min(1, "O nome é obrigatório"),
 });
 
-const steps = [1, 2];
-
 export function SignupForm() {
-  const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
 
   const form = useForm<signupValues>({
@@ -42,68 +35,63 @@ export function SignupForm() {
   }
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="my-3 flex flex-col gap-4"
-      >
-        <Field>
-          <FieldLabel htmlFor="email">Email</FieldLabel>
-          <Input
-            {...form.register("email")}
-            id="email"
-            placeholder="Seu Email"
-            className="text-sm"
-          />
-          <FieldError className="text-sm">
-            {form.formState.errors.email?.message}
-          </FieldError>
-        </Field>
-        <Field>
-          <FieldLabel htmlFor="password">Senha</FieldLabel>
-          <Input
-            {...form.register("password")}
-            type="password"
-            id="password"
-            placeholder="Sua senha"
-            className="text-sm"
-          />
-          <FieldError>{form.formState.errors.password?.message}</FieldError>
-        </Field>
-        <Field>
-          <FieldLabel htmlFor="name">Nome</FieldLabel>
-          <Input
-            {...form.register("name")}
-            type="text"
-            id="name"
-            placeholder="Seu nome"
-            className="text-sm"
-          />
-          <FieldError>{form.formState.errors.name?.message}</FieldError>
-        </Field>
-        <Button type="submit" disabled={loading}>
-          {loading ? "Carregando..." : "Cadastrar"}
-        </Button>
-      </form>
-
-      {/* Steps do Formulário  */}
-      {/* <Stepper onValueChange={setStep} value={step}>
-        {steps.map((step) => (
-          <StepperItem className="flex-1" key={step} step={step}>
-            <StepperTrigger
-              asChild
-              className="w-full flex-col items-start gap-2"
-            >
-              <StepperIndicator
-                asChild
-                className="h-2 w-full bg-sky-100 rounded-none"
-              >
-                <span className="sr-only">{step}</span>
-              </StepperIndicator>
-            </StepperTrigger>
-          </StepperItem>
-        ))}
-      </Stepper> */}
-    </Form>
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <div className="text-sm">
+          <Logo />
+        </div>
+        <h2 className="font-bold">Crie uma conta</h2>
+        <CardDescription>
+          Seu registro glicêmico na palma da mão
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col justify-between">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="my-3 flex flex-col gap-2"
+          >
+            <Field>
+              <Input
+                {...form.register("email")}
+                id="email"
+                placeholder="Email"
+                className="text-sm p-5"
+              />
+              <FieldError className="text-[12px]">
+                {form.formState.errors.email?.message}
+              </FieldError>
+            </Field>
+            <Field>
+              <Input
+                {...form.register("password")}
+                type="password"
+                id="password"
+                placeholder="Senha"
+                className="text-sm p-5"
+              />
+              <FieldError className="text-[12px]">
+                {form.formState.errors.password?.message}
+              </FieldError>
+            </Field>
+            <Field>
+              <Input
+                {...form.register("name")}
+                type="text"
+                id="name"
+                placeholder="Primeiro Nome"
+                className="text-sm p-5"
+              />
+              <FieldError className="text-[12px]">
+                {form.formState.errors.name?.message}
+              </FieldError>
+            </Field>
+            <Button type="submit" disabled={loading} className="mt-3">
+              {loading ? "Carregando..." : "Cadastrar"}
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   );
 }
