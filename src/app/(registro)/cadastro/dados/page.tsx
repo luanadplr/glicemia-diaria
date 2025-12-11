@@ -10,7 +10,7 @@ export default async function Dados() {
 
   return (
     <div className="bg-linear-to-l from-teal-300 to-emerald-400 w-full h-screen flex flex-col items-center justify-center">
-      <DadosForm name={session.user.name} />
+      <DadosForm />
     </div>
   );
 }

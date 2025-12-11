@@ -49,6 +49,7 @@ model User {
   @@map("user")
 
   username String?  @unique
+  nivelGlicemia Int?
   totalGlicemia Glicemia[]
   fitas         Fitas?
 }
