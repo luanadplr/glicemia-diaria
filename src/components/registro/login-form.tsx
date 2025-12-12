@@ -103,6 +103,7 @@ export function LoginForm() {
                 placeholder="Sua Senha"
                 className="text-sm"
                 type="password"
+                autoComplete="off"
               />
               {forgetPassword && (
                 <FieldDescription>

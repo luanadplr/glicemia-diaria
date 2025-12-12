@@ -1,5 +1,9 @@
 import { Logout } from "@/components/dashboard/logout";
+import { MenuSheeter } from "@/components/dashboard/menu-sheeter";
+import { NovoDadoGlicemico } from "@/components/dashboard/nova-glicemia";
+import { Logo } from "@/components/logo";
 import { prisma } from "@/lib/prisma";
+import { prismaData } from "@/service/prismaData";
 import { useSession } from "@/service/session";
 import { redirect } from "next/navigation";
 
@@ -11,13 +15,12 @@ interface Props {
 
 export default async function Dashboard({ params }: Props) {
   const { username } = await params;
+  const session = await useSession();
 
   // Impedir de acessar a área do Dashboard caso não esteja logado
-  const session = await useSession();
   if (!session) return redirect("/");
 
-  const userId = session.user.id;
-
+  // Verificar se o username no parametro existe, se não, redireciona ao login
   const hasUsername = await prisma.user.findUnique({
     where: { username },
   });
@@ -25,9 +28,14 @@ export default async function Dashboard({ params }: Props) {
   if (!hasUsername) return redirect("/");
 
   return (
-    <>
-      <h1>Dashboard {username}</h1>
-      <Logout />
-    </>
+    <div className="bg-linear-to-l from-teal-300 to-emerald-400 w-full h-screen flex flex-col">
+      <section className="flex flex-row justify-between p-2 items-center bg-white">
+        <Logo />
+        <MenuSheeter name={session.user.name} />
+      </section>
+      <section>
+        <NovoDadoGlicemico />
+      </section>
+    </div>
   );
 }

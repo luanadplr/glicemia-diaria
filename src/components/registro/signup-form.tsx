@@ -69,6 +69,7 @@ export function SignupForm() {
                 id="password"
                 placeholder="Senha"
                 className="text-sm p-5"
+                autoComplete="off"
               />
               <FieldError className="text-[12px]">
                 {form.formState.errors.password?.message}

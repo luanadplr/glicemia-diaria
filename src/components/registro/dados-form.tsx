@@ -78,6 +78,7 @@ export function DadosForm() {
                 placeholder="Seu Username"
                 className="text-sm"
                 id="username"
+                autoComplete="off"
               />
               <FieldError className="text-[12px]">
                 {form.formState.errors.username?.message}
