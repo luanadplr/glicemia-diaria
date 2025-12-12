@@ -26,7 +26,6 @@ export async function novoUsuario(formData: signupValues) {
     },
     {
       onSuccess: (context) => {
-        console.log("Cadastro realizado com sucesso:", context);
         redirect("/cadastro/dados");
       },
       onError: (context) => {

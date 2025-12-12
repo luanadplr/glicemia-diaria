@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import { Field, FieldError } from "../ui/field";
 import { Input } from "../ui/input";
-import { signupValues, novoUsuario } from "@/service/auth";
+import { signupValues, novoUsuario } from "@/service/authRegistro";
 import { Logo } from "../logo";
 import { Card, CardHeader, CardDescription, CardContent } from "../ui/card";
 

@@ -15,16 +15,17 @@ import { Input } from "../ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../ui/form";
-import { checkUsername } from "@/service/prisma";
-import { clientSession } from "@/service/client-session";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useState } from "react";
+import { Field, FieldDescription } from "../ui/field";
+import { prismaData } from "@/service/prismaData";
 
 function redirectToSignUp() {
   redirect("/cadastro");
 }
 
 const loginSchema = z.object({
-  username: z.string().min(1, "Username inválido"),
   email: z.string().email({ message: "Insira um email válido" }),
   password: z.string(),
 });
@@ -32,24 +33,34 @@ const loginSchema = z.object({
 type loginData = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
+  const [loading, setLoading] = useState(false);
+  const [forgetPassword, setForgetPassword] = useState(false);
+
   const form = useForm<loginData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
     },
   });
 
   async function onSubmit(formData: loginData) {
-    console.log(formData);
-    const response = await checkUsername(formData.username);
-    if (response.data === formData.username) {
-      authClient.signIn.email({
-        email: formData.email,
-        password: formData.password,
-        callbackURL: "/dashboard/" + formData.username,
-      });
+    setLoading(true);
+
+    const response = await authClient.signIn.email({
+      email: formData.email,
+      password: formData.password,
+    });
+
+    const userData = await prismaData(formData.email);
+
+    if (response.error) {
+      toast.error("Email ou Senha inválidos");
+      setLoading(false);
+      setForgetPassword(true);
+      form.reset();
+    } else {
+      redirect("/dashboard/" + userData?.username);
     }
   }
 
@@ -79,23 +90,31 @@ export function LoginForm() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
-            <Input
-              {...form.register("username")}
-              placeholder="Seu Username"
-              className="text-sm"
-            />
-            <Input
-              {...form.register("email")}
-              placeholder="Seu Email"
-              className="text-sm"
-            />
-            <Input
-              {...form.register("password")}
-              placeholder="Sua Senha"
-              className="text-sm"
-              type="password"
-            />
-            <Button className="cursor-pointer">Entrar</Button>
+            <Field>
+              <Input
+                {...form.register("email")}
+                placeholder="Seu Email"
+                className="text-sm"
+              />
+            </Field>
+            <Field>
+              <Input
+                {...form.register("password")}
+                placeholder="Sua Senha"
+                className="text-sm"
+                type="password"
+              />
+              {forgetPassword && (
+                <FieldDescription>
+                  <Button className="text-[13px]" variant="link">
+                    Esqueceu sua senha?
+                  </Button>
+                </FieldDescription>
+              )}
+            </Field>
+            <Button className="cursor-pointer">
+              {loading ? "Entrando..." : "Entrar"}
+            </Button>
           </form>
         </Form>
       </CardContent>

@@ -11,7 +11,7 @@ export const auth = betterAuth({
   user: {
     additionalFields: {
       username: { type: "string", required: false },
-      nivelGlicemia: { type: "int", required: false },
+      nivelGlicemia: { type: "number", required: false },
     },
   },
 });

@@ -10,9 +10,10 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Field, FieldError } from "../ui/field";
 import { Button } from "../ui/button";
-import { updateUserData } from "@/service/prisma";
+import { updateUserData } from "@/service/prismaUpdate";
 import { clientSession } from "@/service/client-session";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 
 const schemaFormDados = z.object({
   username: z.string().min(1, "O username é obrigatório"),
@@ -25,6 +26,8 @@ const session = await clientSession();
 if (!session) redirect("/");
 
 export function DadosForm() {
+  const [loading, setLoading] = useState(false);
+
   const form = useForm<FormDados>({
     resolver: zodResolver(schemaFormDados),
     defaultValues: {
@@ -36,7 +39,8 @@ export function DadosForm() {
   const userId = session.data?.user.id;
 
   async function onSubmit(formData: FormDados) {
-    console.log(formData);
+    setLoading(true);
+
     try {
       await updateUserData(formData, userId!);
     } catch (error) {
@@ -94,7 +98,7 @@ export function DadosForm() {
                 {form.formState.errors.nivelGlicemia?.message}
               </FieldError>
             </Field>
-            <Button type="submit">Enviar</Button>
+            <Button type="submit">{loading ? "Enviando..." : "Enviar"}</Button>
           </form>
         </Form>
       </CardContent>
