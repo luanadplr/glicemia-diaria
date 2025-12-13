@@ -1,6 +1,6 @@
 /* 
 
-Registrar um novo usuário
+Função para registrar um novo usuário
 
 */
 

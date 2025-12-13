@@ -10,7 +10,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Field, FieldError } from "../ui/field";
 import { Button } from "../ui/button";
-import { updateUserData } from "@/service/prismaUpdate";
+import { updateUserData } from "@/service/db";
 import { clientSession } from "@/service/client-session";
 import { redirect } from "next/navigation";
 import { useState } from "react";

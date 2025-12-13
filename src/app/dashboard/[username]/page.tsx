@@ -1,9 +1,7 @@
-import { Logout } from "@/components/dashboard/logout";
 import { MenuSheeter } from "@/components/dashboard/menu-sheeter";
 import { NovoDadoGlicemico } from "@/components/dashboard/nova-glicemia";
 import { Logo } from "@/components/logo";
 import { prisma } from "@/lib/prisma";
-import { prismaData } from "@/service/prismaData";
 import { useSession } from "@/service/session";
 import { redirect } from "next/navigation";
 
@@ -34,7 +32,7 @@ export default async function Dashboard({ params }: Props) {
         <MenuSheeter name={session.user.name} />
       </section>
       <section>
-        <NovoDadoGlicemico />
+        <NovoDadoGlicemico userId={session.user.id} />
       </section>
     </div>
   );

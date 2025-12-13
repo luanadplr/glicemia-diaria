@@ -16,29 +16,36 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Controller } from "react-hook-form";
+import { glicemiaUpdate } from "@/service/db";
 
 const dadoGlicemicoSchema = z.object({
   total: z.number().min(1, "O valor da glicemia é obrigatório"),
-  aplicouGlicemia: z.boolean(),
+  aplicouInsulina: z.boolean(),
   dataHora: z.date(),
-  observacao: z.string().optional(),
+  observacao: z.string(),
 });
 
 type dadoGlicemico = z.infer<typeof dadoGlicemicoSchema>;
 
-export function NovoDadoGlicemico() {
+type Props = {
+  userId: string;
+};
+
+export function NovoDadoGlicemico({ userId }: Props) {
   const form = useForm<dadoGlicemico>({
     resolver: zodResolver(dadoGlicemicoSchema),
     defaultValues: {
       total: undefined,
-      aplicouGlicemia: false,
+      aplicouInsulina: false,
       dataHora: new Date(),
-      observacao: "",
+      observacao: undefined,
     },
   });
 
-  function onSubmit(formData: dadoGlicemico) {
+  async function onSubmit(formData: dadoGlicemico) {
     console.log(formData);
+    await glicemiaUpdate(formData, userId);
   }
   return (
     <section className="m-5">
@@ -63,31 +70,45 @@ export function NovoDadoGlicemico() {
                 {...form.register("total", { valueAsNumber: true })}
                 type="number"
                 id="total"
+                className="mb-3"
               />
               <Label htmlFor="dataHora">Data/Hora</Label>
               <Input
                 {...form.register("dataHora", { valueAsDate: true })}
                 type="datetime-local"
                 id="dataHora"
+                className="mb-3"
+                required
               />
-              <RadioGroup {...form.register("aplicouGlicemia")}>
-                <div className="flex flex-row space-x-2">
-                  <RadioGroupItem
-                    value="true"
-                    id="aplicou"
-                    className="border-black"
-                  />
-                  <Label htmlFor="aplicou">Aplicou Insulina</Label>
-                </div>
-                <div className="flex flex-row space-x-2">
-                  <RadioGroupItem
-                    value="false"
-                    id="naoaplicou"
-                    className="border-black"
-                  />
-                  <Label htmlFor="naoaplicou">Não Aplicou</Label>
-                </div>
-              </RadioGroup>
+              <Controller
+                name="aplicouInsulina"
+                control={form.control}
+                render={({ field }) => (
+                  <RadioGroup
+                    defaultValue="true"
+                    value={String(field.value)}
+                    onValueChange={(value) => field.onChange(value === "true")}
+                    className="flex mb-3"
+                  >
+                    <div className="flex flex-row space-x-2">
+                      <RadioGroupItem
+                        value="true"
+                        id="true"
+                        className="border-black"
+                      />
+                      <Label htmlFor="true">Aplicou Insulina</Label>
+                    </div>
+                    <div className="flex flex-row space-x-2">
+                      <RadioGroupItem
+                        value="false"
+                        id="false"
+                        className="border-black"
+                      />
+                      <Label htmlFor="false">Não Aplicou</Label>
+                    </div>
+                  </RadioGroup>
+                )}
+              />
               <Label htmlFor="observacao">Observação</Label>
               <Input
                 {...form.register("observacao")}
@@ -104,5 +125,3 @@ export function NovoDadoGlicemico() {
     </section>
   );
 }
-
-// Total, aplicou ou não glicemia, data/hora e observação

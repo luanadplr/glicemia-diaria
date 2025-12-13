@@ -19,7 +19,7 @@ import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useState } from "react";
 import { Field, FieldDescription } from "../ui/field";
-import { prismaData } from "@/service/prismaData";
+import { prismaData } from "@/service/db";
 
 function redirectToSignUp() {
   redirect("/cadastro");
