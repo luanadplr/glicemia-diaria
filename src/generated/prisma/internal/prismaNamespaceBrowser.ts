@@ -52,7 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Glicemia: 'Glicemia',
-  Fitas: 'Fitas',
+  Insulina: 'Insulina',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
@@ -79,7 +79,8 @@ export const GlicemiaScalarFieldEnum = {
   id: 'id',
   total: 'total',
   aplicouInsulina: 'aplicouInsulina',
-  dataHora: 'dataHora',
+  data: 'data',
+  hora: 'hora',
   observacao: 'observacao',
   createdAt: 'createdAt',
   usuarioId: 'usuarioId'
@@ -88,14 +89,13 @@ export const GlicemiaScalarFieldEnum = {
 export type GlicemiaScalarFieldEnum = (typeof GlicemiaScalarFieldEnum)[keyof typeof GlicemiaScalarFieldEnum]
 
 
-export const FitasScalarFieldEnum = {
+export const InsulinaScalarFieldEnum = {
   id: 'id',
-  quantidade: 'quantidade',
-  createdAt: 'createdAt',
+  dataDeTroca: 'dataDeTroca',
   usuarioId: 'usuarioId'
 } as const
 
-export type FitasScalarFieldEnum = (typeof FitasScalarFieldEnum)[keyof typeof FitasScalarFieldEnum]
+export type InsulinaScalarFieldEnum = (typeof InsulinaScalarFieldEnum)[keyof typeof InsulinaScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {

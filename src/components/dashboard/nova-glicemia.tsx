@@ -1,5 +1,5 @@
 "use client";
-import { PlusCircle } from "lucide-react";
+import { ChevronDownIcon, PlusCircle } from "lucide-react";
 import { Input } from "../ui/input";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -18,11 +18,15 @@ import {
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Controller } from "react-hook-form";
 import { glicemiaUpdate } from "@/service/db";
+import { useState } from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Calendar } from "../ui/calendar";
 
 const dadoGlicemicoSchema = z.object({
   total: z.number().min(1, "O valor da glicemia é obrigatório"),
   aplicouInsulina: z.boolean(),
-  dataHora: z.date(),
+  data: z.date(),
+  hora: z.string(),
   observacao: z.string(),
 });
 
@@ -33,12 +37,16 @@ type Props = {
 };
 
 export function NovoDadoGlicemico({ userId }: Props) {
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState<Date | undefined>();
+
   const form = useForm<dadoGlicemico>({
     resolver: zodResolver(dadoGlicemicoSchema),
     defaultValues: {
       total: undefined,
       aplicouInsulina: false,
-      dataHora: new Date(),
+      data: undefined,
+      hora: "",
       observacao: undefined,
     },
   });
@@ -46,6 +54,7 @@ export function NovoDadoGlicemico({ userId }: Props) {
   async function onSubmit(formData: dadoGlicemico) {
     console.log(formData);
     await glicemiaUpdate(formData, userId);
+    form.reset();
   }
   return (
     <section className="m-5">
@@ -65,21 +74,67 @@ export function NovoDadoGlicemico({ userId }: Props) {
           </DialogHeader>
           <form onSubmit={form.handleSubmit(onSubmit)} method="POST">
             <div className="flex flex-col gap-3">
-              <Label htmlFor="total">Glicemia (mmol/L)</Label>
+              {/* TOTAL DA GLICEMIA */}
+              <Label htmlFor="total">
+                Glicemia (mmol/L) <span className="text-red-500">*</span>
+              </Label>
               <Input
                 {...form.register("total", { valueAsNumber: true })}
                 type="number"
                 id="total"
                 className="mb-3"
-              />
-              <Label htmlFor="dataHora">Data/Hora</Label>
-              <Input
-                {...form.register("dataHora", { valueAsDate: true })}
-                type="datetime-local"
-                id="dataHora"
-                className="mb-3"
                 required
               />
+              {/* DATA / HORA DA AFERIÇÃO */}
+              <div className="flex gap-4 mb-3">
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="date-picker" className="px-1">
+                    Data <span className="text-red-500">*</span>
+                  </Label>
+                  <Popover open={open} onOpenChange={setOpen}>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        id="date-picker"
+                        className="w-32 justify-between font-normal"
+                      >
+                        {data ? data.toLocaleDateString() : "Select date"}
+                        <ChevronDownIcon />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      className="w-auto overflow-hidden p-0"
+                      align="start"
+                    >
+                      <Calendar
+                        mode="single"
+                        selected={data}
+                        captionLayout="dropdown"
+                        onSelect={(data) => {
+                          setData(data);
+                          setOpen(false);
+                          form.setValue("data", data!);
+                        }}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor="time-picker" className="px-1">
+                    Hora <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    type="time"
+                    id="time-picker"
+                    step="1"
+                    defaultValue="00:00:00"
+                    className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+                    {...form.register("hora")}
+                    required
+                  />
+                </div>
+              </div>
+              {/* APLICOU OU NÃO INSULINA */}
               <Controller
                 name="aplicouInsulina"
                 control={form.control}
@@ -109,6 +164,7 @@ export function NovoDadoGlicemico({ userId }: Props) {
                   </RadioGroup>
                 )}
               />
+              {/* OBSERVAÇÃO */}
               <Label htmlFor="observacao">Observação</Label>
               <Input
                 {...form.register("observacao")}

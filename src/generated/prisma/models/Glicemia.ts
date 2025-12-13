@@ -38,7 +38,8 @@ export type GlicemiaMinAggregateOutputType = {
   id: string | null
   total: number | null
   aplicouInsulina: boolean | null
-  dataHora: Date | null
+  data: Date | null
+  hora: string | null
   observacao: string | null
   createdAt: Date | null
   usuarioId: string | null
@@ -48,7 +49,8 @@ export type GlicemiaMaxAggregateOutputType = {
   id: string | null
   total: number | null
   aplicouInsulina: boolean | null
-  dataHora: Date | null
+  data: Date | null
+  hora: string | null
   observacao: string | null
   createdAt: Date | null
   usuarioId: string | null
@@ -58,7 +60,8 @@ export type GlicemiaCountAggregateOutputType = {
   id: number
   total: number
   aplicouInsulina: number
-  dataHora: number
+  data: number
+  hora: number
   observacao: number
   createdAt: number
   usuarioId: number
@@ -78,7 +81,8 @@ export type GlicemiaMinAggregateInputType = {
   id?: true
   total?: true
   aplicouInsulina?: true
-  dataHora?: true
+  data?: true
+  hora?: true
   observacao?: true
   createdAt?: true
   usuarioId?: true
@@ -88,7 +92,8 @@ export type GlicemiaMaxAggregateInputType = {
   id?: true
   total?: true
   aplicouInsulina?: true
-  dataHora?: true
+  data?: true
+  hora?: true
   observacao?: true
   createdAt?: true
   usuarioId?: true
@@ -98,7 +103,8 @@ export type GlicemiaCountAggregateInputType = {
   id?: true
   total?: true
   aplicouInsulina?: true
-  dataHora?: true
+  data?: true
+  hora?: true
   observacao?: true
   createdAt?: true
   usuarioId?: true
@@ -195,7 +201,8 @@ export type GlicemiaGroupByOutputType = {
   id: string
   total: number
   aplicouInsulina: boolean
-  dataHora: Date
+  data: Date
+  hora: string
   observacao: string | null
   createdAt: Date
   usuarioId: string
@@ -228,7 +235,8 @@ export type GlicemiaWhereInput = {
   id?: Prisma.StringFilter<"Glicemia"> | string
   total?: Prisma.IntFilter<"Glicemia"> | number
   aplicouInsulina?: Prisma.BoolFilter<"Glicemia"> | boolean
-  dataHora?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
+  data?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
+  hora?: Prisma.StringFilter<"Glicemia"> | string
   observacao?: Prisma.StringNullableFilter<"Glicemia"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
   usuarioId?: Prisma.StringFilter<"Glicemia"> | string
@@ -239,7 +247,8 @@ export type GlicemiaOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   total?: Prisma.SortOrder
   aplicouInsulina?: Prisma.SortOrder
-  dataHora?: Prisma.SortOrder
+  data?: Prisma.SortOrder
+  hora?: Prisma.SortOrder
   observacao?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
@@ -253,7 +262,8 @@ export type GlicemiaWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.GlicemiaWhereInput | Prisma.GlicemiaWhereInput[]
   total?: Prisma.IntFilter<"Glicemia"> | number
   aplicouInsulina?: Prisma.BoolFilter<"Glicemia"> | boolean
-  dataHora?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
+  data?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
+  hora?: Prisma.StringFilter<"Glicemia"> | string
   observacao?: Prisma.StringNullableFilter<"Glicemia"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
   usuarioId?: Prisma.StringFilter<"Glicemia"> | string
@@ -264,7 +274,8 @@ export type GlicemiaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   total?: Prisma.SortOrder
   aplicouInsulina?: Prisma.SortOrder
-  dataHora?: Prisma.SortOrder
+  data?: Prisma.SortOrder
+  hora?: Prisma.SortOrder
   observacao?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
@@ -282,7 +293,8 @@ export type GlicemiaScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Glicemia"> | string
   total?: Prisma.IntWithAggregatesFilter<"Glicemia"> | number
   aplicouInsulina?: Prisma.BoolWithAggregatesFilter<"Glicemia"> | boolean
-  dataHora?: Prisma.DateTimeWithAggregatesFilter<"Glicemia"> | Date | string
+  data?: Prisma.DateTimeWithAggregatesFilter<"Glicemia"> | Date | string
+  hora?: Prisma.StringWithAggregatesFilter<"Glicemia"> | string
   observacao?: Prisma.StringNullableWithAggregatesFilter<"Glicemia"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Glicemia"> | Date | string
   usuarioId?: Prisma.StringWithAggregatesFilter<"Glicemia"> | string
@@ -292,7 +304,8 @@ export type GlicemiaCreateInput = {
   id?: string
   total: number
   aplicouInsulina?: boolean
-  dataHora: Date | string
+  data?: Date | string
+  hora: string
   observacao?: string | null
   createdAt?: Date | string
   usuario: Prisma.UserCreateNestedOneWithoutTotalGlicemiaInput
@@ -302,7 +315,8 @@ export type GlicemiaUncheckedCreateInput = {
   id?: string
   total: number
   aplicouInsulina?: boolean
-  dataHora: Date | string
+  data?: Date | string
+  hora: string
   observacao?: string | null
   createdAt?: Date | string
   usuarioId: string
@@ -312,7 +326,8 @@ export type GlicemiaUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
   aplicouInsulina?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
   observacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuario?: Prisma.UserUpdateOneRequiredWithoutTotalGlicemiaNestedInput
@@ -322,7 +337,8 @@ export type GlicemiaUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
   aplicouInsulina?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
   observacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -332,7 +348,8 @@ export type GlicemiaCreateManyInput = {
   id?: string
   total: number
   aplicouInsulina?: boolean
-  dataHora: Date | string
+  data?: Date | string
+  hora: string
   observacao?: string | null
   createdAt?: Date | string
   usuarioId: string
@@ -342,7 +359,8 @@ export type GlicemiaUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
   aplicouInsulina?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
   observacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -351,7 +369,8 @@ export type GlicemiaUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
   aplicouInsulina?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
   observacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -361,7 +380,8 @@ export type GlicemiaCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   total?: Prisma.SortOrder
   aplicouInsulina?: Prisma.SortOrder
-  dataHora?: Prisma.SortOrder
+  data?: Prisma.SortOrder
+  hora?: Prisma.SortOrder
   observacao?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
@@ -375,7 +395,8 @@ export type GlicemiaMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   total?: Prisma.SortOrder
   aplicouInsulina?: Prisma.SortOrder
-  dataHora?: Prisma.SortOrder
+  data?: Prisma.SortOrder
+  hora?: Prisma.SortOrder
   observacao?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
@@ -385,7 +406,8 @@ export type GlicemiaMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   total?: Prisma.SortOrder
   aplicouInsulina?: Prisma.SortOrder
-  dataHora?: Prisma.SortOrder
+  data?: Prisma.SortOrder
+  hora?: Prisma.SortOrder
   observacao?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
@@ -475,7 +497,8 @@ export type GlicemiaCreateWithoutUsuarioInput = {
   id?: string
   total: number
   aplicouInsulina?: boolean
-  dataHora: Date | string
+  data?: Date | string
+  hora: string
   observacao?: string | null
   createdAt?: Date | string
 }
@@ -484,7 +507,8 @@ export type GlicemiaUncheckedCreateWithoutUsuarioInput = {
   id?: string
   total: number
   aplicouInsulina?: boolean
-  dataHora: Date | string
+  data?: Date | string
+  hora: string
   observacao?: string | null
   createdAt?: Date | string
 }
@@ -522,7 +546,8 @@ export type GlicemiaScalarWhereInput = {
   id?: Prisma.StringFilter<"Glicemia"> | string
   total?: Prisma.IntFilter<"Glicemia"> | number
   aplicouInsulina?: Prisma.BoolFilter<"Glicemia"> | boolean
-  dataHora?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
+  data?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
+  hora?: Prisma.StringFilter<"Glicemia"> | string
   observacao?: Prisma.StringNullableFilter<"Glicemia"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Glicemia"> | Date | string
   usuarioId?: Prisma.StringFilter<"Glicemia"> | string
@@ -532,7 +557,8 @@ export type GlicemiaCreateManyUsuarioInput = {
   id?: string
   total: number
   aplicouInsulina?: boolean
-  dataHora: Date | string
+  data?: Date | string
+  hora: string
   observacao?: string | null
   createdAt?: Date | string
 }
@@ -541,7 +567,8 @@ export type GlicemiaUpdateWithoutUsuarioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
   aplicouInsulina?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
   observacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -550,7 +577,8 @@ export type GlicemiaUncheckedUpdateWithoutUsuarioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
   aplicouInsulina?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
   observacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -559,7 +587,8 @@ export type GlicemiaUncheckedUpdateManyWithoutUsuarioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
   aplicouInsulina?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  dataHora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
   observacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -570,7 +599,8 @@ export type GlicemiaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   total?: boolean
   aplicouInsulina?: boolean
-  dataHora?: boolean
+  data?: boolean
+  hora?: boolean
   observacao?: boolean
   createdAt?: boolean
   usuarioId?: boolean
@@ -581,7 +611,8 @@ export type GlicemiaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   total?: boolean
   aplicouInsulina?: boolean
-  dataHora?: boolean
+  data?: boolean
+  hora?: boolean
   observacao?: boolean
   createdAt?: boolean
   usuarioId?: boolean
@@ -592,7 +623,8 @@ export type GlicemiaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   total?: boolean
   aplicouInsulina?: boolean
-  dataHora?: boolean
+  data?: boolean
+  hora?: boolean
   observacao?: boolean
   createdAt?: boolean
   usuarioId?: boolean
@@ -603,13 +635,14 @@ export type GlicemiaSelectScalar = {
   id?: boolean
   total?: boolean
   aplicouInsulina?: boolean
-  dataHora?: boolean
+  data?: boolean
+  hora?: boolean
   observacao?: boolean
   createdAt?: boolean
   usuarioId?: boolean
 }
 
-export type GlicemiaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "total" | "aplicouInsulina" | "dataHora" | "observacao" | "createdAt" | "usuarioId", ExtArgs["result"]["glicemia"]>
+export type GlicemiaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "total" | "aplicouInsulina" | "data" | "hora" | "observacao" | "createdAt" | "usuarioId", ExtArgs["result"]["glicemia"]>
 export type GlicemiaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usuario?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -629,7 +662,8 @@ export type $GlicemiaPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: string
     total: number
     aplicouInsulina: boolean
-    dataHora: Date
+    data: Date
+    hora: string
     observacao: string | null
     createdAt: Date
     usuarioId: string
@@ -1060,7 +1094,8 @@ export interface GlicemiaFieldRefs {
   readonly id: Prisma.FieldRef<"Glicemia", 'String'>
   readonly total: Prisma.FieldRef<"Glicemia", 'Int'>
   readonly aplicouInsulina: Prisma.FieldRef<"Glicemia", 'Boolean'>
-  readonly dataHora: Prisma.FieldRef<"Glicemia", 'DateTime'>
+  readonly data: Prisma.FieldRef<"Glicemia", 'DateTime'>
+  readonly hora: Prisma.FieldRef<"Glicemia", 'String'>
   readonly observacao: Prisma.FieldRef<"Glicemia", 'String'>
   readonly createdAt: Prisma.FieldRef<"Glicemia", 'DateTime'>
   readonly usuarioId: Prisma.FieldRef<"Glicemia", 'String'>

@@ -24,7 +24,8 @@ Função para registrar novo dado de Glicemia no Banco de dados
 interface Glicemia {
   total: number;
   aplicouInsulina: boolean;
-  dataHora: Date;
+  data: Date;
+  hora: string;
   observacao: string | undefined;
 }
 
@@ -33,7 +34,8 @@ export async function glicemiaUpdate(data: Glicemia, userId: string) {
     data: {
       total: data.total,
       aplicouInsulina: data.aplicouInsulina,
-      dataHora: data.dataHora,
+      data: data.data,
+      hora: data.hora,
       observacao: data.observacao,
       usuario: { connect: { id: userId } },
     },

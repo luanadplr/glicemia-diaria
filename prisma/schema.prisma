@@ -17,22 +17,35 @@ model Glicemia {
   id              String   @id @default(cuid())
   total           Int
   aplicouInsulina Boolean  @default(false)
-  dataHora        DateTime
+  data            DateTime @default(now())
+  hora            String @default("")
   observacao      String?
   createdAt       DateTime @default(now())
 
   usuarioId String
-  usuario   User @relation(fields: [usuarioId], references: [id])
+  usuario   User   @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
 }
+
+model Insulina {
+  id          String   @id @default(cuid())
+  dataDeTroca DateTime
+
+  usuarioId String @unique
+  usuario   User   @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+}
+
+/*
 
 model Fitas {
   id         String   @id @default(cuid())
   quantidade Int      @default(0)
   createdAt  DateTime @default(now())
 
-  usuarioId String  @unique
-  usuario   User @relation(fields: [usuarioId], references: [id])
+  usuarioId String @unique
+  usuario   User   @relation(fields: [usuarioId], references: [id])
 }
+
+*/
 
 model User {
   id            String    @id
@@ -45,13 +58,14 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  username            String?    @unique
+  nivelGlicemia       Int?
+  totalGlicemia       Glicemia[]
+  // fitas               Fitas?
+  insulinaDataDeTroca Insulina[]
+
   @@unique([email])
   @@map("user")
-
-  username String?  @unique
-  nivelGlicemia Int?
-  totalGlicemia Glicemia[]
-  fitas         Fitas?
 }
 
 model Session {

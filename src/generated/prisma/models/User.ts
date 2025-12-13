@@ -251,7 +251,7 @@ export type UserWhereInput = {
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   totalGlicemia?: Prisma.GlicemiaListRelationFilter
-  fitas?: Prisma.XOR<Prisma.FitasNullableScalarRelationFilter, Prisma.FitasWhereInput> | null
+  insulinaDataDeTroca?: Prisma.InsulinaListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -267,7 +267,7 @@ export type UserOrderByWithRelationInput = {
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   totalGlicemia?: Prisma.GlicemiaOrderByRelationAggregateInput
-  fitas?: Prisma.FitasOrderByWithRelationInput
+  insulinaDataDeTroca?: Prisma.InsulinaOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -286,7 +286,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   totalGlicemia?: Prisma.GlicemiaListRelationFilter
-  fitas?: Prisma.XOR<Prisma.FitasNullableScalarRelationFilter, Prisma.FitasWhereInput> | null
+  insulinaDataDeTroca?: Prisma.InsulinaListRelationFilter
 }, "id" | "username" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -334,7 +334,7 @@ export type UserCreateInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaCreateNestedManyWithoutUsuarioInput
-  fitas?: Prisma.FitasCreateNestedOneWithoutUsuarioInput
+  insulinaDataDeTroca?: Prisma.InsulinaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -350,7 +350,7 @@ export type UserUncheckedCreateInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaUncheckedCreateNestedManyWithoutUsuarioInput
-  fitas?: Prisma.FitasUncheckedCreateNestedOneWithoutUsuarioInput
+  insulinaDataDeTroca?: Prisma.InsulinaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UserUpdateInput = {
@@ -366,7 +366,7 @@ export type UserUpdateInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUpdateManyWithoutUsuarioNestedInput
-  fitas?: Prisma.FitasUpdateOneWithoutUsuarioNestedInput
+  insulinaDataDeTroca?: Prisma.InsulinaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -382,7 +382,7 @@ export type UserUncheckedUpdateInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUncheckedUpdateManyWithoutUsuarioNestedInput
-  fitas?: Prisma.FitasUncheckedUpdateOneWithoutUsuarioNestedInput
+  insulinaDataDeTroca?: Prisma.InsulinaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -484,18 +484,18 @@ export type UserUpdateOneRequiredWithoutTotalGlicemiaNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTotalGlicemiaInput, Prisma.UserUpdateWithoutTotalGlicemiaInput>, Prisma.UserUncheckedUpdateWithoutTotalGlicemiaInput>
 }
 
-export type UserCreateNestedOneWithoutFitasInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutFitasInput, Prisma.UserUncheckedCreateWithoutFitasInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFitasInput
+export type UserCreateNestedOneWithoutInsulinaDataDeTrocaInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInsulinaDataDeTrocaInput, Prisma.UserUncheckedCreateWithoutInsulinaDataDeTrocaInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInsulinaDataDeTrocaInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutFitasNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutFitasInput, Prisma.UserUncheckedCreateWithoutFitasInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFitasInput
-  upsert?: Prisma.UserUpsertWithoutFitasInput
+export type UserUpdateOneRequiredWithoutInsulinaDataDeTrocaNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInsulinaDataDeTrocaInput, Prisma.UserUncheckedCreateWithoutInsulinaDataDeTrocaInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInsulinaDataDeTrocaInput
+  upsert?: Prisma.UserUpsertWithoutInsulinaDataDeTrocaInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFitasInput, Prisma.UserUpdateWithoutFitasInput>, Prisma.UserUncheckedUpdateWithoutFitasInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInsulinaDataDeTrocaInput, Prisma.UserUpdateWithoutInsulinaDataDeTrocaInput>, Prisma.UserUncheckedUpdateWithoutInsulinaDataDeTrocaInput>
 }
 
 export type NullableIntFieldUpdateOperationsInput = {
@@ -546,7 +546,7 @@ export type UserCreateWithoutTotalGlicemiaInput = {
   nivelGlicemia?: number | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  fitas?: Prisma.FitasCreateNestedOneWithoutUsuarioInput
+  insulinaDataDeTroca?: Prisma.InsulinaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UserUncheckedCreateWithoutTotalGlicemiaInput = {
@@ -561,7 +561,7 @@ export type UserUncheckedCreateWithoutTotalGlicemiaInput = {
   nivelGlicemia?: number | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  fitas?: Prisma.FitasUncheckedCreateNestedOneWithoutUsuarioInput
+  insulinaDataDeTroca?: Prisma.InsulinaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UserCreateOrConnectWithoutTotalGlicemiaInput = {
@@ -592,7 +592,7 @@ export type UserUpdateWithoutTotalGlicemiaInput = {
   nivelGlicemia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  fitas?: Prisma.FitasUpdateOneWithoutUsuarioNestedInput
+  insulinaDataDeTroca?: Prisma.InsulinaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTotalGlicemiaInput = {
@@ -607,10 +607,10 @@ export type UserUncheckedUpdateWithoutTotalGlicemiaInput = {
   nivelGlicemia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  fitas?: Prisma.FitasUncheckedUpdateOneWithoutUsuarioNestedInput
+  insulinaDataDeTroca?: Prisma.InsulinaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
-export type UserCreateWithoutFitasInput = {
+export type UserCreateWithoutInsulinaDataDeTrocaInput = {
   id: string
   name: string
   email: string
@@ -625,7 +625,7 @@ export type UserCreateWithoutFitasInput = {
   totalGlicemia?: Prisma.GlicemiaCreateNestedManyWithoutUsuarioInput
 }
 
-export type UserUncheckedCreateWithoutFitasInput = {
+export type UserUncheckedCreateWithoutInsulinaDataDeTrocaInput = {
   id: string
   name: string
   email: string
@@ -640,23 +640,23 @@ export type UserUncheckedCreateWithoutFitasInput = {
   totalGlicemia?: Prisma.GlicemiaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
-export type UserCreateOrConnectWithoutFitasInput = {
+export type UserCreateOrConnectWithoutInsulinaDataDeTrocaInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutFitasInput, Prisma.UserUncheckedCreateWithoutFitasInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutInsulinaDataDeTrocaInput, Prisma.UserUncheckedCreateWithoutInsulinaDataDeTrocaInput>
 }
 
-export type UserUpsertWithoutFitasInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutFitasInput, Prisma.UserUncheckedUpdateWithoutFitasInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutFitasInput, Prisma.UserUncheckedCreateWithoutFitasInput>
+export type UserUpsertWithoutInsulinaDataDeTrocaInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutInsulinaDataDeTrocaInput, Prisma.UserUncheckedUpdateWithoutInsulinaDataDeTrocaInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutInsulinaDataDeTrocaInput, Prisma.UserUncheckedCreateWithoutInsulinaDataDeTrocaInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutFitasInput = {
+export type UserUpdateToOneWithWhereWithoutInsulinaDataDeTrocaInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutFitasInput, Prisma.UserUncheckedUpdateWithoutFitasInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutInsulinaDataDeTrocaInput, Prisma.UserUncheckedUpdateWithoutInsulinaDataDeTrocaInput>
 }
 
-export type UserUpdateWithoutFitasInput = {
+export type UserUpdateWithoutInsulinaDataDeTrocaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -671,7 +671,7 @@ export type UserUpdateWithoutFitasInput = {
   totalGlicemia?: Prisma.GlicemiaUpdateManyWithoutUsuarioNestedInput
 }
 
-export type UserUncheckedUpdateWithoutFitasInput = {
+export type UserUncheckedUpdateWithoutInsulinaDataDeTrocaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -698,7 +698,7 @@ export type UserCreateWithoutSessionsInput = {
   nivelGlicemia?: number | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaCreateNestedManyWithoutUsuarioInput
-  fitas?: Prisma.FitasCreateNestedOneWithoutUsuarioInput
+  insulinaDataDeTroca?: Prisma.InsulinaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -713,7 +713,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   nivelGlicemia?: number | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaUncheckedCreateNestedManyWithoutUsuarioInput
-  fitas?: Prisma.FitasUncheckedCreateNestedOneWithoutUsuarioInput
+  insulinaDataDeTroca?: Prisma.InsulinaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -744,7 +744,7 @@ export type UserUpdateWithoutSessionsInput = {
   nivelGlicemia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUpdateManyWithoutUsuarioNestedInput
-  fitas?: Prisma.FitasUpdateOneWithoutUsuarioNestedInput
+  insulinaDataDeTroca?: Prisma.InsulinaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -759,7 +759,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   nivelGlicemia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUncheckedUpdateManyWithoutUsuarioNestedInput
-  fitas?: Prisma.FitasUncheckedUpdateOneWithoutUsuarioNestedInput
+  insulinaDataDeTroca?: Prisma.InsulinaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -774,7 +774,7 @@ export type UserCreateWithoutAccountsInput = {
   nivelGlicemia?: number | null
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaCreateNestedManyWithoutUsuarioInput
-  fitas?: Prisma.FitasCreateNestedOneWithoutUsuarioInput
+  insulinaDataDeTroca?: Prisma.InsulinaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -789,7 +789,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   nivelGlicemia?: number | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   totalGlicemia?: Prisma.GlicemiaUncheckedCreateNestedManyWithoutUsuarioInput
-  fitas?: Prisma.FitasUncheckedCreateNestedOneWithoutUsuarioInput
+  insulinaDataDeTroca?: Prisma.InsulinaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -820,7 +820,7 @@ export type UserUpdateWithoutAccountsInput = {
   nivelGlicemia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUpdateManyWithoutUsuarioNestedInput
-  fitas?: Prisma.FitasUpdateOneWithoutUsuarioNestedInput
+  insulinaDataDeTroca?: Prisma.InsulinaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -835,7 +835,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   nivelGlicemia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   totalGlicemia?: Prisma.GlicemiaUncheckedUpdateManyWithoutUsuarioNestedInput
-  fitas?: Prisma.FitasUncheckedUpdateOneWithoutUsuarioNestedInput
+  insulinaDataDeTroca?: Prisma.InsulinaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 
@@ -847,12 +847,14 @@ export type UserCountOutputType = {
   sessions: number
   accounts: number
   totalGlicemia: number
+  insulinaDataDeTroca: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   totalGlicemia?: boolean | UserCountOutputTypeCountTotalGlicemiaArgs
+  insulinaDataDeTroca?: boolean | UserCountOutputTypeCountInsulinaDataDeTrocaArgs
 }
 
 /**
@@ -886,6 +888,13 @@ export type UserCountOutputTypeCountTotalGlicemiaArgs<ExtArgs extends runtime.Ty
   where?: Prisma.GlicemiaWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountInsulinaDataDeTrocaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InsulinaWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -900,7 +909,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   totalGlicemia?: boolean | Prisma.User$totalGlicemiaArgs<ExtArgs>
-  fitas?: boolean | Prisma.User$fitasArgs<ExtArgs>
+  insulinaDataDeTroca?: boolean | Prisma.User$insulinaDataDeTrocaArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -945,7 +954,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   totalGlicemia?: boolean | Prisma.User$totalGlicemiaArgs<ExtArgs>
-  fitas?: boolean | Prisma.User$fitasArgs<ExtArgs>
+  insulinaDataDeTroca?: boolean | Prisma.User$insulinaDataDeTrocaArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -957,7 +966,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     totalGlicemia: Prisma.$GlicemiaPayload<ExtArgs>[]
-    fitas: Prisma.$FitasPayload<ExtArgs> | null
+    insulinaDataDeTroca: Prisma.$InsulinaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1366,7 +1375,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   totalGlicemia<T extends Prisma.User$totalGlicemiaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$totalGlicemiaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GlicemiaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  fitas<T extends Prisma.User$fitasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$fitasArgs<ExtArgs>>): Prisma.Prisma__FitasClient<runtime.Types.Result.GetResult<Prisma.$FitasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  insulinaDataDeTroca<T extends Prisma.User$insulinaDataDeTrocaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$insulinaDataDeTrocaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsulinaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1865,22 +1874,27 @@ export type User$totalGlicemiaArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * User.fitas
+ * User.insulinaDataDeTroca
  */
-export type User$fitasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$insulinaDataDeTrocaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Fitas
+   * Select specific fields to fetch from the Insulina
    */
-  select?: Prisma.FitasSelect<ExtArgs> | null
+  select?: Prisma.InsulinaSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Fitas
+   * Omit specific fields from the Insulina
    */
-  omit?: Prisma.FitasOmit<ExtArgs> | null
+  omit?: Prisma.InsulinaOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.FitasInclude<ExtArgs> | null
-  where?: Prisma.FitasWhereInput
+  include?: Prisma.InsulinaInclude<ExtArgs> | null
+  where?: Prisma.InsulinaWhereInput
+  orderBy?: Prisma.InsulinaOrderByWithRelationInput | Prisma.InsulinaOrderByWithRelationInput[]
+  cursor?: Prisma.InsulinaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InsulinaScalarFieldEnum | Prisma.InsulinaScalarFieldEnum[]
 }
 
 /**

@@ -385,7 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Glicemia: 'Glicemia',
-  Fitas: 'Fitas',
+  Insulina: 'Insulina',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
@@ -405,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "glicemia" | "fitas" | "user" | "session" | "account" | "verification"
+    modelProps: "glicemia" | "insulina" | "user" | "session" | "account" | "verification"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -483,77 +483,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Fitas: {
-      payload: Prisma.$FitasPayload<ExtArgs>
-      fields: Prisma.FitasFieldRefs
+    Insulina: {
+      payload: Prisma.$InsulinaPayload<ExtArgs>
+      fields: Prisma.InsulinaFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.FitasFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload> | null
+          args: Prisma.InsulinaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.FitasFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload>
+          args: Prisma.InsulinaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload>
         }
         findFirst: {
-          args: Prisma.FitasFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload> | null
+          args: Prisma.InsulinaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.FitasFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload>
+          args: Prisma.InsulinaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload>
         }
         findMany: {
-          args: Prisma.FitasFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload>[]
+          args: Prisma.InsulinaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload>[]
         }
         create: {
-          args: Prisma.FitasCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload>
+          args: Prisma.InsulinaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload>
         }
         createMany: {
-          args: Prisma.FitasCreateManyArgs<ExtArgs>
+          args: Prisma.InsulinaCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.FitasCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload>[]
+          args: Prisma.InsulinaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload>[]
         }
         delete: {
-          args: Prisma.FitasDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload>
+          args: Prisma.InsulinaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload>
         }
         update: {
-          args: Prisma.FitasUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload>
+          args: Prisma.InsulinaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload>
         }
         deleteMany: {
-          args: Prisma.FitasDeleteManyArgs<ExtArgs>
+          args: Prisma.InsulinaDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.FitasUpdateManyArgs<ExtArgs>
+          args: Prisma.InsulinaUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.FitasUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload>[]
+          args: Prisma.InsulinaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload>[]
         }
         upsert: {
-          args: Prisma.FitasUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$FitasPayload>
+          args: Prisma.InsulinaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsulinaPayload>
         }
         aggregate: {
-          args: Prisma.FitasAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateFitas>
+          args: Prisma.InsulinaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInsulina>
         }
         groupBy: {
-          args: Prisma.FitasGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.FitasGroupByOutputType>[]
+          args: Prisma.InsulinaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InsulinaGroupByOutputType>[]
         }
         count: {
-          args: Prisma.FitasCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.FitasCountAggregateOutputType> | number
+          args: Prisma.InsulinaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InsulinaCountAggregateOutputType> | number
         }
       }
     }
@@ -896,7 +896,8 @@ export const GlicemiaScalarFieldEnum = {
   id: 'id',
   total: 'total',
   aplicouInsulina: 'aplicouInsulina',
-  dataHora: 'dataHora',
+  data: 'data',
+  hora: 'hora',
   observacao: 'observacao',
   createdAt: 'createdAt',
   usuarioId: 'usuarioId'
@@ -905,14 +906,13 @@ export const GlicemiaScalarFieldEnum = {
 export type GlicemiaScalarFieldEnum = (typeof GlicemiaScalarFieldEnum)[keyof typeof GlicemiaScalarFieldEnum]
 
 
-export const FitasScalarFieldEnum = {
+export const InsulinaScalarFieldEnum = {
   id: 'id',
-  quantidade: 'quantidade',
-  createdAt: 'createdAt',
+  dataDeTroca: 'dataDeTroca',
   usuarioId: 'usuarioId'
 } as const
 
-export type FitasScalarFieldEnum = (typeof FitasScalarFieldEnum)[keyof typeof FitasScalarFieldEnum]
+export type InsulinaScalarFieldEnum = (typeof InsulinaScalarFieldEnum)[keyof typeof InsulinaScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -1163,7 +1163,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   glicemia?: Prisma.GlicemiaOmit
-  fitas?: Prisma.FitasOmit
+  insulina?: Prisma.InsulinaOmit
   user?: Prisma.UserOmit
   session?: Prisma.SessionOmit
   account?: Prisma.AccountOmit

@@ -1,3 +1,4 @@
+import { ChartGlicemico } from "@/components/dashboard/glicemia-chart";
 import { MenuSheeter } from "@/components/dashboard/menu-sheeter";
 import { NovoDadoGlicemico } from "@/components/dashboard/nova-glicemia";
 import { Logo } from "@/components/logo";
@@ -33,6 +34,9 @@ export default async function Dashboard({ params }: Props) {
       </section>
       <section>
         <NovoDadoGlicemico userId={session.user.id} />
+      </section>
+      <section>
+        <ChartGlicemico />
       </section>
     </div>
   );

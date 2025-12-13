@@ -23,10 +23,10 @@ export * from './enums';
  */
 export type Glicemia = Prisma.GlicemiaModel
 /**
- * Model Fitas
+ * Model Insulina
  * 
  */
-export type Fitas = Prisma.FitasModel
+export type Insulina = Prisma.InsulinaModel
 /**
  * Model User
  * 
