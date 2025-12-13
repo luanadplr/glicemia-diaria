@@ -1,26 +1,24 @@
 "use client";
-import { InfoIcon, PlusCircle } from "lucide-react";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "../ui/collapsible";
+import { PlusCircle } from "lucide-react";
 import { Input } from "../ui/input";
 import * as z from "zod";
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Field } from "../ui/field";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-} from "../ui/input-group";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Label } from "../ui/label";
+import { Button } from "../ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
 const dadoGlicemicoSchema = z.object({
-  total: z.number().min(1),
+  total: z.number().min(1, "O valor da glicemia é obrigatório"),
   aplicouGlicemia: z.boolean(),
   dataHora: z.date(),
   observacao: z.string().optional(),
@@ -43,58 +41,67 @@ export function NovoDadoGlicemico() {
     console.log(formData);
   }
   return (
-    <Collapsible className="bg-white rounded-md max-w-md m-auto my-5 p-3 flex flex-col justify-between gap-5">
-      <CollapsibleTrigger className="flex cursor-pointer items-center gap-3 justify-between">
-        <p className="text-sm">Inserir novo registro de Glicemia</p>
-        <PlusCircle size={15} />
-      </CollapsibleTrigger>
-      <CollapsibleContent>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-2"
-          >
-            <Field>
-              {/* VALOR DA GLICEMIA */}
-              <InputGroup>
-                <InputGroupInput
-                  {...form.register("total", { valueAsNumber: true })}
-                  type="number"
-                  placeholder="0"
-                />
-                <InputGroupAddon align="block-start">
-                  <Label htmlFor="total" className="text-foreground">
-                    Valor da Glicemia
-                  </Label>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <InputGroupButton className="rounded-full">
-                        <InfoIcon />
-                      </InputGroupButton>
-                    </TooltipTrigger>
-                    <TooltipContent>Valor exibido no aparelho</TooltipContent>
-                  </Tooltip>
-                </InputGroupAddon>
-              </InputGroup>
-            </Field>
-            {/* DATA & HORA DA GLICEMIA */}
-            <Field>
-              <InputGroup>
-                <InputGroupInput
-                  {...form.register("dataHora")}
-                  type="datetime-local"
-                />
-                <InputGroupAddon align="block-start">
-                  <Label htmlFor="dataHora" className="text-foreground">
-                    Data e Hora da Aferição
-                  </Label>
-                </InputGroupAddon>
-              </InputGroup>
-            </Field>
+    <section className="m-5">
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline" className="rounded-full cursor-pointer">
+            <PlusCircle size={13} />
+            Novo dado Glicêmico
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader className="text-left">
+            <DialogTitle>Inserir Novo Dado Glicêmico</DialogTitle>
+            <DialogDescription>
+              Certifique-se de colocar os dados corretamente
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={form.handleSubmit(onSubmit)} method="POST">
+            <div className="flex flex-col gap-3">
+              <Label htmlFor="total">Glicemia (mmol/L)</Label>
+              <Input
+                {...form.register("total", { valueAsNumber: true })}
+                type="number"
+                id="total"
+              />
+              <Label htmlFor="dataHora">Data/Hora</Label>
+              <Input
+                {...form.register("dataHora", { valueAsDate: true })}
+                type="datetime-local"
+                id="dataHora"
+              />
+              <RadioGroup {...form.register("aplicouGlicemia")}>
+                <div className="flex flex-row space-x-2">
+                  <RadioGroupItem
+                    value="true"
+                    id="aplicou"
+                    className="border-black"
+                  />
+                  <Label htmlFor="aplicou">Aplicou Insulina</Label>
+                </div>
+                <div className="flex flex-row space-x-2">
+                  <RadioGroupItem
+                    value="false"
+                    id="naoaplicou"
+                    className="border-black"
+                  />
+                  <Label htmlFor="naoaplicou">Não Aplicou</Label>
+                </div>
+              </RadioGroup>
+              <Label htmlFor="observacao">Observação</Label>
+              <Input
+                {...form.register("observacao")}
+                type="text"
+                id="observacao"
+              />
+            </div>
+            <DialogFooter className="mt-4">
+              <Button type="submit">Salvar</Button>
+            </DialogFooter>
           </form>
-        </Form>
-      </CollapsibleContent>
-    </Collapsible>
+        </DialogContent>
+      </Dialog>
+    </section>
   );
 }
 
