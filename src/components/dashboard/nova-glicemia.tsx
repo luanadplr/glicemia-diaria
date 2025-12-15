@@ -98,7 +98,7 @@ export function NovoDadoGlicemico({ userId }: Props) {
                         id="date-picker"
                         className="w-32 justify-between font-normal"
                       >
-                        {data ? data.toLocaleDateString() : "Select date"}
+                        {data ? data.toLocaleDateString() : "--/--/--"}
                         <ChevronDownIcon />
                       </Button>
                     </PopoverTrigger>
@@ -115,6 +115,7 @@ export function NovoDadoGlicemico({ userId }: Props) {
                           setOpen(false);
                           form.setValue("data", data!);
                         }}
+                        disabled={{ before: new Date() }}
                       />
                     </PopoverContent>
                   </Popover>

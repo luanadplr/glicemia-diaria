@@ -17,6 +17,19 @@ export async function prismaData(email: string) {
 
 /*
 
+Função para pegar dados do usuário pelo userId
+
+*/
+
+export async function prismaUserData(userId: string) {
+  const data = prisma.user.findUnique({
+    where: { id: userId },
+  });
+  return data;
+}
+
+/*
+
 Função para registrar novo dado de Glicemia no Banco de dados
 
 */

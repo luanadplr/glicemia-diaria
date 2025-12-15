@@ -1,6 +1,7 @@
 import { ChartGlicemico } from "@/components/dashboard/glicemia-chart";
 import { MenuSheeter } from "@/components/dashboard/menu-sheeter";
 import { NovoDadoGlicemico } from "@/components/dashboard/nova-glicemia";
+import { DadoRecente } from "@/components/dashboard/ultimo-dado";
 import { Logo } from "@/components/logo";
 import { prisma } from "@/lib/prisma";
 import { useSession } from "@/service/session";
@@ -37,6 +38,9 @@ export default async function Dashboard({ params }: Props) {
       </section>
       <section>
         <ChartGlicemico />
+      </section>
+      <section>
+        <DadoRecente userId={session.user.id} />
       </section>
     </div>
   );

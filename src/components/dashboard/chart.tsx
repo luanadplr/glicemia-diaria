@@ -1,20 +1,13 @@
 "use client";
 
-import {
-  CartesianGrid,
-  LabelList,
-  Line,
-  LineChart,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { CartesianGrid, LabelList, Line, LineChart, XAxis } from "recharts";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "../ui/chart";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   chartData: any;
@@ -22,6 +15,7 @@ interface Props {
 
 export function Chart({ chartData }: Props) {
   // useEffect({
+  //   setRefreshKey(oldKey => oldKey + 1);
   // }, [chartData]);
 
   const ChartConfig = {
@@ -32,7 +26,7 @@ export function Chart({ chartData }: Props) {
   } satisfies ChartConfig;
 
   return (
-    <ChartContainer config={ChartConfig}>
+    <ChartContainer config={ChartConfig} className="min-h-[200px] w-full">
       <LineChart
         accessibilityLayer
         data={chartData}
@@ -42,7 +36,14 @@ export function Chart({ chartData }: Props) {
         }}
       >
         <CartesianGrid vertical={false} />
-        <XAxis dataKey="date" tickLine={false} tickMargin={8} />
+        <XAxis
+          dataKey="date"
+          tickLine={false}
+          tickMargin={8}
+          tickFormatter={(tick) => tick.slice(0, 2)}
+          // padding={{ left: 0, right: 0 }}
+          interval="preserveStartEnd"
+        />
         <ChartTooltip
           cursor={false}
           content={<ChartTooltipContent hideLabel />}
