@@ -13,7 +13,7 @@ interface Props {
   chartData: any;
 }
 
-export function Chart({ chartData }: Props) {
+export function GraficoGlicemicoChart({ chartData }: Props) {
   // useEffect({
   //   setRefreshKey(oldKey => oldKey + 1);
   // }, [chartData]);
@@ -25,8 +25,16 @@ export function Chart({ chartData }: Props) {
     },
   } satisfies ChartConfig;
 
+  const dotColors = () => {
+    if (chartData.Valor > 250) {
+      return { fill: "var(--chart-1)" };
+    } else {
+      return { fill: "var(--char-2)" };
+    }
+  };
+
   return (
-    <ChartContainer config={ChartConfig} className="min-h-[200px] w-full">
+    <ChartContainer config={ChartConfig} className="h-auto w-full">
       <LineChart
         accessibilityLayer
         data={chartData}

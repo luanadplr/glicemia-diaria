@@ -1,9 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import { useSession } from "@/service/session";
 import { Card, CardContent, CardHeader } from "../ui/card";
-import { Chart } from "./chart";
+import { GraficoGlicemicoChart } from "./graficoGlicemico-chart";
 
-export async function ChartGlicemico() {
+export async function GraficoGlicemicoCard() {
   const session = await useSession();
   const data = session?.user;
 
@@ -17,10 +17,10 @@ export async function ChartGlicemico() {
   }));
 
   return (
-    <Card className="max-w-md m-auto">
+    <Card className="h-300px w-100">
       <CardHeader>Gráfico Glicêmico</CardHeader>
       <CardContent>
-        <Chart chartData={chartData} />
+        <GraficoGlicemicoChart chartData={chartData} />
       </CardContent>
     </Card>
   );

@@ -8,14 +8,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { MenuIcon } from "lucide-react";
-import { Logout } from "./logout";
+import { LogoutButton } from "./logout-button";
 import { Button } from "@/components/ui/button";
 
 interface Props {
   name: string | undefined;
 }
 
-export function MenuSheeter({ name }: Props) {
+export function MenuSheet({ name }: Props) {
   return (
     <Sheet>
       <SheetTrigger className="border rounded-md p-1 cursor-pointer">
@@ -34,7 +34,7 @@ export function MenuSheeter({ name }: Props) {
               </Button>
             </li>
           </ul>
-          <Logout />
+          <LogoutButton />
         </div>
       </SheetContent>
     </Sheet>

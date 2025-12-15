@@ -5,7 +5,7 @@ import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 
-export function Logout() {
+export function LogoutButton() {
   const [loading, setLoading] = useState(false);
 
   const handleLogOut = async () => {

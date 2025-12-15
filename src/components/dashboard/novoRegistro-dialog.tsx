@@ -36,7 +36,7 @@ type Props = {
   userId: string;
 };
 
-export function NovoDadoGlicemico({ userId }: Props) {
+export function NovoRegistroGlicemico({ userId }: Props) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<Date | undefined>();
 

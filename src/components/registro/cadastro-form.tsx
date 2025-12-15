@@ -17,7 +17,7 @@ const signupSchema = z.object({
   name: z.string().min(1, "O nome é obrigatório"),
 });
 
-export function SignupForm() {
+export function CadastroForm() {
   const [loading, setLoading] = useState(false);
 
   const form = useForm<signupValues>({

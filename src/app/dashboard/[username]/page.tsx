@@ -1,8 +1,10 @@
-import { ChartGlicemico } from "@/components/dashboard/glicemia-chart";
-import { MenuSheeter } from "@/components/dashboard/menu-sheeter";
-import { NovoDadoGlicemico } from "@/components/dashboard/nova-glicemia";
-import { DadoRecente } from "@/components/dashboard/ultimo-dado";
+import { GraficoGlicemicoCard } from "@/components/dashboard/graficoGlicemico-card";
+import { HistoricoRegistrosGlicemicos } from "@/components/dashboard/historicoRegistros-card";
+import { MenuSheet } from "@/components/dashboard/menu-sheet";
+import { NovoRegistroGlicemico } from "@/components/dashboard/novoRegistro-dialog";
+import { UltimoRegistroGlicemico } from "@/components/dashboard/ultimoRegistro-card";
 import { Logo } from "@/components/logo";
+import { authClient } from "@/lib/auth-client";
 import { prisma } from "@/lib/prisma";
 import { useSession } from "@/service/session";
 import { redirect } from "next/navigation";
@@ -25,23 +27,40 @@ export default async function Dashboard({ params }: Props) {
     where: { username },
   });
 
-  if (!hasUsername) return redirect("/");
+  if (!hasUsername) {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          redirect("/");
+        },
+      },
+    });
+  }
 
   return (
-    <div className="bg-linear-to-l from-teal-300 to-emerald-400 w-full h-screen flex flex-col">
-      <section className="flex flex-row justify-between p-2 items-center bg-white">
+    <main className="grid grid-cols-[auto_1fr_auto] grid-rows-[auto_1fr_1fr_auto] gap-4 h-screen">
+      <section className="row-span-4 bg-white w-48 p-4">
         <Logo />
-        <MenuSheeter name={session.user.name} />
+        <MenuSheet name={session.user.name} />
       </section>
-      <section>
-        <NovoDadoGlicemico userId={session.user.id} />
+      <section className="col-span-2">
+        <GraficoGlicemicoCard />
       </section>
-      <section>
-        <ChartGlicemico />
+      <section className="col-start-2 row-start-2">
+        <UltimoRegistroGlicemico userId={session.user.id} />
       </section>
-      <section>
-        <DadoRecente userId={session.user.id} />
+      <section className="col-start-3 row-start-2">
+        <div>Ainda estou pensando...</div>
       </section>
-    </div>
+      <section className="col-start-2 row-start-3">
+        <NovoRegistroGlicemico userId={session.user.id} />
+        <div>Badge de última troca de insulina ??</div>
+      </section>
+      <section className="col-span-2 col-start-2 row-start-4">
+        <HistoricoRegistrosGlicemicos userId={session.user.id} />
+      </section>
+    </main>
   );
 }
+
+// bg-linear-to-l from-teal-300 to-emerald-400

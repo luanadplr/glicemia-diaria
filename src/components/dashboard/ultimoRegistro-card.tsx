@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { prismaUserData } from "@/service/db";
 
-export async function DadoRecente({ userId }: { userId: string }) {
+export async function UltimoRegistroGlicemico({ userId }: { userId: string }) {
   const glicemias = await prisma.glicemia.findMany({
     where: { usuarioId: userId },
   });
