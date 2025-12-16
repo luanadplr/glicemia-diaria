@@ -2,6 +2,7 @@
 
 import { Button } from "../ui/button";
 import { authClient } from "@/lib/auth-client";
+import { LogOutIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 
@@ -20,7 +21,8 @@ export function LogoutButton() {
   };
 
   return (
-    <Button className="cursor-pointer" onClick={handleLogOut}>
+    <Button variant="link" className="text-white" onClick={handleLogOut}>
+      <LogOutIcon />
       {loading ? "Deslogando..." : "Sair"}
     </Button>
   );

@@ -2,6 +2,16 @@ import { prisma } from "@/lib/prisma";
 import { useSession } from "@/service/session";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { GraficoGlicemicoChart } from "./graficoGlicemico-chart";
+import { TrendingUpIcon } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 export async function GraficoGlicemicoCard() {
   const session = await useSession();
@@ -16,10 +26,49 @@ export async function GraficoGlicemicoCard() {
     Valor: item.total,
   }));
 
+  const timeDate = new Date();
+  const month = timeDate.getMonth();
+  const meses = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ];
+
   return (
-    <Card className="h-300px w-100">
-      <CardHeader>Gráfico Glicêmico</CardHeader>
-      <CardContent>
+    <Card className="ml-5 w-auto min-w-0 h-full min-h-0">
+      <CardHeader className="flex items-center justify-between">
+        <div className="flex gap-3 items-center">
+          <div className="bg-chart-2 opacity-60 rounded-md p-1">
+            <TrendingUpIcon className="text-white" />
+          </div>
+          <p className="font-semibold">Gráfico Glicêmico</p>
+        </div>
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder={meses[month]} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Meses</SelectLabel>
+              {meses.map((mes) => (
+                <SelectItem key={mes} value={mes}>
+                  {mes}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </CardHeader>
+      <CardContent className="m-auto">
         <GraficoGlicemicoChart chartData={chartData} />
       </CardContent>
     </Card>

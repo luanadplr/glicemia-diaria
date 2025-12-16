@@ -34,7 +34,7 @@ export function GraficoGlicemicoChart({ chartData }: Props) {
   };
 
   return (
-    <ChartContainer config={ChartConfig} className="h-auto w-full">
+    <ChartContainer config={ChartConfig} className="w-full h-[300px] p-2">
       <LineChart
         accessibilityLayer
         data={chartData}

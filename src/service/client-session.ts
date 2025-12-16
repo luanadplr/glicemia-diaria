@@ -1,5 +1,6 @@
 import { authClient } from "@/lib/auth-client";
 
 export async function clientSession() {
-  return authClient.getSession();
+  const session = await authClient.getSession();
+  return { session };
 }

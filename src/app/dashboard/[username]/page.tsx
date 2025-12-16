@@ -1,9 +1,8 @@
+import { AvisoInsulinaBadge } from "@/components/dashboard/avisoInsulina-badge";
 import { GraficoGlicemicoCard } from "@/components/dashboard/graficoGlicemico-card";
 import { HistoricoRegistrosGlicemicos } from "@/components/dashboard/historicoRegistros-card";
-import { MenuSheet } from "@/components/dashboard/menu-sheet";
 import { NovoRegistroGlicemico } from "@/components/dashboard/novoRegistro-dialog";
 import { UltimoRegistroGlicemico } from "@/components/dashboard/ultimoRegistro-card";
-import { Logo } from "@/components/logo";
 import { authClient } from "@/lib/auth-client";
 import { prisma } from "@/lib/prisma";
 import { useSession } from "@/service/session";
@@ -38,13 +37,40 @@ export default async function Dashboard({ params }: Props) {
   }
 
   return (
-    <main className="grid grid-cols-[auto_1fr_auto] grid-rows-[auto_1fr_1fr_auto] gap-4 h-screen">
-      <section className="row-span-4 bg-white w-48 p-4">
+    <div className="grid grid-cols-[auto_auto] grid-rows-[auto_1fr_1fr_1fr_auto] gap-4 h-screen">
+      <section className="col-span-3 p-4 flex justify-between items-center">
+        <div>
+          <h1 className="font-bold text-xl text-[#259D91]">Seu Dashboard</h1>
+          <p className="text-muted-foreground text-[13px]">
+            Seja Bem Vindo, {session.user.name}
+          </p>
+        </div>
+        <div>
+          <AvisoInsulinaBadge />
+        </div>
+      </section>
+      <section className="col-span-2 row-span-2 ">
+        <GraficoGlicemicoCard />
+      </section>
+      <section className="">
+        <UltimoRegistroGlicemico userId={session.user.id} />
+      </section>
+      <section className="bg-amber-950">
+        <div>Aréa da Insuliina</div>
+      </section>
+      <section className="col-span-3 bg-amber-100">
+        <div>Histórico</div>
+      </section>
+      <section className="col-span-3 bg-foreground">
+        <div>Rodapé simples</div>
+      </section>
+
+      {/* <section className="row-span-4 bg-white w-48 p-4">
         <Logo />
         <MenuSheet name={session.user.name} />
       </section>
       <section className="col-span-2">
-        <GraficoGlicemicoCard />
+        
       </section>
       <section className="col-start-2 row-start-2">
         <UltimoRegistroGlicemico userId={session.user.id} />
@@ -58,8 +84,8 @@ export default async function Dashboard({ params }: Props) {
       </section>
       <section className="col-span-2 col-start-2 row-start-4">
         <HistoricoRegistrosGlicemicos userId={session.user.id} />
-      </section>
-    </main>
+      </section> */}
+    </div>
   );
 }
 
