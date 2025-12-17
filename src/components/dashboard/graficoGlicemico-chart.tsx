@@ -1,6 +1,14 @@
 "use client";
 
-import { CartesianGrid, LabelList, Line, LineChart, XAxis } from "recharts";
+import {
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  ReferenceLine,
+  XAxis,
+  YAxis,
+} from "recharts";
 import {
   ChartConfig,
   ChartContainer,
@@ -10,11 +18,12 @@ import {
 
 interface Props {
   chartData: any;
+  nivelGlicemia: number;
 }
 
-export function GraficoGlicemicoChart({ chartData }: Props) {
+export function GraficoGlicemicoChart({ chartData, nivelGlicemia }: Props) {
   const ChartConfig = {
-    desktop: {
+    glicemia: {
       label: "Glicemia",
       color: "var(--chart-1)",
     },
@@ -30,17 +39,16 @@ export function GraficoGlicemicoChart({ chartData }: Props) {
           right: 12,
         }}
       >
-        <CartesianGrid vertical={false} />
+        <CartesianGrid />
         <XAxis
           dataKey="date"
-          tickLine={false}
           tickMargin={8}
           tickFormatter={(tick) => tick.slice(0, 5)}
           interval="preserveStartEnd"
         />
         <ChartTooltip
           cursor={false}
-          content={<ChartTooltipContent hideLabel />}
+          content={<ChartTooltipContent hideIndicator />}
         />
         <Line
           dataKey="Valor"
@@ -53,14 +61,16 @@ export function GraficoGlicemicoChart({ chartData }: Props) {
           activeDot={{
             r: 5,
           }}
-        >
-          <LabelList
-            position="top"
-            offset={12}
-            className="fill-foreground"
-            fontSize={12}
-          />
-        </Line>
+          name="Glicemia"
+        />
+        <ReferenceLine
+          y={nivelGlicemia}
+          stroke="orange"
+          strokeDasharray="5 5"
+          label="Nível Ideal de Glicemia"
+        />
+        <YAxis />
+        <Legend />
       </LineChart>
     </ChartContainer>
   );

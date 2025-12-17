@@ -76,7 +76,10 @@ export async function GraficoGlicemicoCard() {
             <NovoRegistroGlicemicoButton userId={data?.id!} />
           </div>
         ) : (
-          <GraficoGlicemicoChart chartData={chartData} />
+          <GraficoGlicemicoChart
+            chartData={chartData}
+            nivelGlicemia={data?.nivelGlicemia!}
+          />
         )}
       </CardContent>
     </Card>
