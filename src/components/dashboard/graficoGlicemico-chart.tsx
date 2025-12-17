@@ -7,31 +7,18 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../ui/chart";
-import { useEffect, useState } from "react";
 
 interface Props {
   chartData: any;
 }
 
 export function GraficoGlicemicoChart({ chartData }: Props) {
-  // useEffect({
-  //   setRefreshKey(oldKey => oldKey + 1);
-  // }, [chartData]);
-
   const ChartConfig = {
     desktop: {
       label: "Glicemia",
       color: "var(--chart-1)",
     },
   } satisfies ChartConfig;
-
-  const dotColors = () => {
-    if (chartData.Valor > 250) {
-      return { fill: "var(--chart-1)" };
-    } else {
-      return { fill: "var(--char-2)" };
-    }
-  };
 
   return (
     <ChartContainer config={ChartConfig} className="w-full h-[300px] p-2">
@@ -48,8 +35,7 @@ export function GraficoGlicemicoChart({ chartData }: Props) {
           dataKey="date"
           tickLine={false}
           tickMargin={8}
-          tickFormatter={(tick) => tick.slice(0, 2)}
-          // padding={{ left: 0, right: 0 }}
+          tickFormatter={(tick) => tick.slice(0, 5)}
           interval="preserveStartEnd"
         />
         <ChartTooltip

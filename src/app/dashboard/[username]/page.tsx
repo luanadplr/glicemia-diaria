@@ -1,4 +1,5 @@
 import { AvisoInsulinaBadge } from "@/components/dashboard/avisoInsulina-badge";
+import { ControleInsulinaCard } from "@/components/dashboard/controleInsulina-card";
 import { GraficoGlicemicoCard } from "@/components/dashboard/graficoGlicemico-card";
 import { HistoricoRegistrosGlicemicos } from "@/components/dashboard/historicoRegistros-card";
 import { NovoRegistroGlicemico } from "@/components/dashboard/novoRegistro-dialog";
@@ -52,11 +53,11 @@ export default async function Dashboard({ params }: Props) {
       <section className="col-span-2 row-span-2 ">
         <GraficoGlicemicoCard />
       </section>
-      <section className="">
+      <section>
         <UltimoRegistroGlicemico userId={session.user.id} />
       </section>
-      <section className="bg-amber-950">
-        <div>Aréa da Insuliina</div>
+      <section>
+        <ControleInsulinaCard />
       </section>
       <section className="col-span-3 bg-amber-100">
         <div>Histórico</div>
@@ -64,27 +65,6 @@ export default async function Dashboard({ params }: Props) {
       <section className="col-span-3 bg-foreground">
         <div>Rodapé simples</div>
       </section>
-
-      {/* <section className="row-span-4 bg-white w-48 p-4">
-        <Logo />
-        <MenuSheet name={session.user.name} />
-      </section>
-      <section className="col-span-2">
-        
-      </section>
-      <section className="col-start-2 row-start-2">
-        <UltimoRegistroGlicemico userId={session.user.id} />
-      </section>
-      <section className="col-start-3 row-start-2">
-        <div>Ainda estou pensando...</div>
-      </section>
-      <section className="col-start-2 row-start-3">
-        <NovoRegistroGlicemico userId={session.user.id} />
-        <div>Badge de última troca de insulina ??</div>
-      </section>
-      <section className="col-span-2 col-start-2 row-start-4">
-        <HistoricoRegistrosGlicemicos userId={session.user.id} />
-      </section> */}
     </div>
   );
 }

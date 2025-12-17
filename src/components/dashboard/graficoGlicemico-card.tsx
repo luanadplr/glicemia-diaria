@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { NovoRegistroGlicemicoButton } from "./novoRegistro-button";
 
 export async function GraficoGlicemicoCard() {
   const session = await useSession();
@@ -69,7 +70,14 @@ export async function GraficoGlicemicoCard() {
         </Select>
       </CardHeader>
       <CardContent className="m-auto">
-        <GraficoGlicemicoChart chartData={chartData} />
+        {glicemias.length === 0 ? (
+          <div className="h-full flex flex-col gap-3">
+            <p>Você ainda não tem nenhum registro</p>
+            <NovoRegistroGlicemicoButton userId={data?.id!} />
+          </div>
+        ) : (
+          <GraficoGlicemicoChart chartData={chartData} />
+        )}
       </CardContent>
     </Card>
   );
