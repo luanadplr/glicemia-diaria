@@ -38,8 +38,8 @@ export default async function Dashboard({ params }: Props) {
   }
 
   return (
-    <div className="grid grid-cols-[auto_auto] grid-rows-[auto_1fr_1fr_1fr_auto] gap-4 h-screen">
-      <section className="col-span-3 p-4 flex justify-between items-center">
+    <div className="md:grid md:grid-cols-[auto_auto] grid-rows-[auto_1fr_1fr_1fr_auto] flex flex-col h-screen gap-4">
+      <section className="md:col-span-3 p-4 flex justify-between items-center">
         <div>
           <h1 className="font-bold text-xl text-[#259D91]">Seu Dashboard</h1>
           <p className="text-muted-foreground text-[13px]">
@@ -50,7 +50,7 @@ export default async function Dashboard({ params }: Props) {
           <AvisoInsulinaBadge />
         </div>
       </section>
-      <section className="col-span-2 row-span-2 ">
+      <section className="md:col-span-2 md:row-span-2 ">
         <GraficoGlicemicoCard />
       </section>
       <section>
@@ -59,10 +59,10 @@ export default async function Dashboard({ params }: Props) {
       <section>
         <ControleInsulinaCard />
       </section>
-      <section className="col-span-3 bg-amber-100">
-        <div>Histórico</div>
+      <section className="md:col-span-3">
+        <HistoricoRegistrosGlicemicos userId={session.user.id} />
       </section>
-      <section className="col-span-3 bg-foreground">
+      <section className="md:col-span-3 bg-foreground">
         <div>Rodapé simples</div>
       </section>
     </div>

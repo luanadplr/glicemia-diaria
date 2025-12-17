@@ -22,7 +22,7 @@ export async function UltimoRegistroGlicemico({ userId }: { userId: string }) {
   }`;
 
   return (
-    <Card className="mr-5">
+    <Card className="md:mr-5 md:ml-0 mx-5">
       <CardHeader className="flex items-center justify-between">
         <div className="flex gap-3 items-center">
           <div className="bg-chart-2 opacity-60 rounded-md p-1">

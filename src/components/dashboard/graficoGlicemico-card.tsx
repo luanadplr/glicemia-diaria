@@ -45,7 +45,7 @@ export async function GraficoGlicemicoCard() {
   ];
 
   return (
-    <Card className="ml-5 w-auto min-w-0 h-full min-h-0">
+    <Card className="md:ml-5 md:w-auto min-w-0 h-full min-h-0 mx-5">
       <CardHeader className="flex items-center justify-between">
         <div className="flex gap-3 items-center">
           <div className="bg-chart-2 opacity-60 rounded-md p-1">
@@ -69,7 +69,7 @@ export async function GraficoGlicemicoCard() {
           </SelectContent>
         </Select>
       </CardHeader>
-      <CardContent className="m-auto">
+      <CardContent className="md:m-auto">
         {glicemias.length === 0 ? (
           <div className="h-full flex flex-col gap-3">
             <p>Você ainda não tem nenhum registro</p>
