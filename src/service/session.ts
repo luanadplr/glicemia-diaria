@@ -12,3 +12,16 @@ export async function useSession() {
     headers: await headers(),
   });
 }
+
+/*
+
+Função para pegar os dados no componente client
+
+*/
+
+export async function dataSession() {
+  const dataSession = await useSession();
+  return {
+    data: dataSession,
+  };
+}

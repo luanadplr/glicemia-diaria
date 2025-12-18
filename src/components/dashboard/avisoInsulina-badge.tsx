@@ -15,18 +15,22 @@ export async function AvisoInsulinaBadge({
 
   ultimoRegistroGlicemiaLista.reverse();
 
-  if (ultimoRegistroGlicemiaLista[0].total > nivelGlicemia) {
-    return (
-      <Badge variant="destructive">
-        {ultimoRegistroGlicemiaLista[0].total}mg/dL - Alta
-        <SyringeIcon /> Recomendado uso de Insulina
-      </Badge>
-    );
+  if (nivelGlicemia === null || ultimoRegistroGlicemiaLista.length === 0) {
+    return <></>;
   } else {
-    return (
-      <Badge variant="default" className="bg-green-700">
-        {ultimoRegistroGlicemiaLista[0].total}mg/dL - Ideal
-      </Badge>
-    );
+    if (ultimoRegistroGlicemiaLista[0].total > nivelGlicemia) {
+      return (
+        <Badge variant="destructive">
+          {ultimoRegistroGlicemiaLista[0].total}mg/dL - Alta
+          <SyringeIcon /> Recomendado uso de Insulina
+        </Badge>
+      );
+    } else {
+      return (
+        <Badge variant="default" className="bg-green-700">
+          {ultimoRegistroGlicemiaLista[0].total}mg/dL - Ideal
+        </Badge>
+      );
+    }
   }
 }

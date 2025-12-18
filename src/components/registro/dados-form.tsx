@@ -11,9 +11,9 @@ import { Input } from "../ui/input";
 import { Field, FieldError } from "../ui/field";
 import { Button } from "../ui/button";
 import { updateUserData } from "@/service/db";
-import { clientSession } from "@/service/client-session";
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import { clientSession } from "@/service/client-session";
 
 const schemaFormDados = z.object({
   username: z.string().min(1, "O username é obrigatório"),
@@ -36,7 +36,7 @@ export function DadosForm() {
     },
   });
 
-  const userId = session.data?.user.id;
+  const userId = session.session.data?.user.id;
 
   async function onSubmit(formData: FormDados) {
     setLoading(true);
@@ -61,7 +61,7 @@ export function DadosForm() {
         </div>
         <h2 className="font-bold">Insira suas informações</h2>
         <CardAction className="text-sm text-muted-foreground">
-          {session.data?.user.name}
+          {session.session.data?.user.name}
         </CardAction>
       </CardHeader>
       <CardContent className="gap-4 flex flex-col justify-between">
