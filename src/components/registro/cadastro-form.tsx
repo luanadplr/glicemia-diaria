@@ -10,15 +10,29 @@ import { Input } from "../ui/input";
 import { signupValues, novoUsuario } from "@/service/authentication";
 import { Logo } from "../logo";
 import { Card, CardHeader, CardDescription, CardContent } from "../ui/card";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "../ui/input-group";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 
-const signupSchema = z.object({
-  email: z.string().email({ message: "Insira um email válido" }),
-  password: z.string().min(6, "Sua senha deve ter pelo menos 6 caracteres"),
-  name: z.string().min(1, "O nome é obrigatório"),
-});
+const signupSchema = z
+  .object({
+    email: z.string().email({ message: "Insira um email válido" }),
+    password: z.string().min(6, "Sua senha deve ter pelo menos 6 caracteres"),
+    name: z.string().min(1, "O nome é obrigatório"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Senhas não correspondem",
+    path: ["confirmPassword"],
+  });
 
 export function CadastroForm() {
   const [loading, setLoading] = useState(false);
+  const [seePassword, setSeePassword] = useState("password");
 
   const form = useForm<signupValues>({
     resolver: zodResolver(signupSchema),
@@ -26,12 +40,19 @@ export function CadastroForm() {
       email: "",
       password: "",
       name: "",
+      confirmPassword: "",
     },
   });
 
   async function onSubmit(formData: signupValues) {
     setLoading(true);
     await novoUsuario(formData);
+  }
+
+  function handleSeePassword() {
+    seePassword === "password"
+      ? setSeePassword("text")
+      : setSeePassword("password");
   }
 
   return (
@@ -63,16 +84,36 @@ export function CadastroForm() {
               </FieldError>
             </Field>
             <Field>
-              <Input
-                {...form.register("password")}
-                type="password"
-                id="password"
-                placeholder="Senha"
-                className="text-sm p-5"
-                autoComplete="off"
-              />
+              <InputGroup>
+                <InputGroupInput
+                  {...form.register("password")}
+                  id="password"
+                  placeholder="Senha"
+                  className="text-sm p-5"
+                  autoComplete="off"
+                  type={seePassword}
+                />
+                <InputGroupAddon align="inline-end">
+                  <InputGroupButton onClick={handleSeePassword}>
+                    {seePassword === "password" ? <EyeIcon /> : <EyeOffIcon />}
+                  </InputGroupButton>
+                </InputGroupAddon>
+              </InputGroup>
               <FieldError className="text-[12px]">
                 {form.formState.errors.password?.message}
+              </FieldError>
+            </Field>
+            <Field>
+              <Input
+                {...form.register("confirmPassword")}
+                placeholder="Digite novamente a senha"
+                className="text-sm p-5"
+                autoComplete="off"
+                type={seePassword}
+                id="doublePassword"
+              />
+              <FieldError>
+                {form.formState.errors.confirmPassword?.message}
               </FieldError>
             </Field>
             <Field>

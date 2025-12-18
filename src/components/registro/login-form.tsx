@@ -20,6 +20,13 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { Field, FieldDescription } from "../ui/field";
 import { prismaData } from "@/service/db";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "../ui/input-group";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 function redirectToSignUp() {
   redirect("/cadastro");
@@ -35,6 +42,7 @@ type loginData = z.infer<typeof loginSchema>;
 export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [forgetPassword, setForgetPassword] = useState(false);
+  const [seePassword, setSeePassword] = useState("password");
 
   const form = useForm<loginData>({
     resolver: zodResolver(loginSchema),
@@ -62,6 +70,12 @@ export function LoginForm() {
     } else {
       redirect("/dashboard/" + userData?.username);
     }
+  }
+
+  function handleSeePassword() {
+    seePassword === "text"
+      ? setSeePassword("password")
+      : setSeePassword("text");
   }
 
   return (
@@ -98,13 +112,20 @@ export function LoginForm() {
               />
             </Field>
             <Field>
-              <Input
-                {...form.register("password")}
-                placeholder="Sua Senha"
-                className="text-sm"
-                type="password"
-                autoComplete="off"
-              />
+              <InputGroup>
+                <InputGroupInput
+                  {...form.register("password")}
+                  placeholder="Sua Senha"
+                  className="text-sm"
+                  autoComplete="off"
+                  type={seePassword}
+                />
+                <InputGroupAddon align="inline-end">
+                  <InputGroupButton onClick={handleSeePassword}>
+                    {seePassword === "text" ? <EyeOffIcon /> : <EyeIcon />}
+                  </InputGroupButton>
+                </InputGroupAddon>
+              </InputGroup>
               {forgetPassword && (
                 <FieldDescription>
                   <Button className="text-[13px]" variant="link">
