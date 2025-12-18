@@ -1,8 +1,17 @@
-import { CalendarIcon, PlusCircleIcon, SyringeIcon } from "lucide-react";
+import { CalendarIcon, SyringeIcon } from "lucide-react";
 import { Card, CardContent, CardHeader } from "../ui/card";
-import { Button } from "../ui/button";
+import { useSession } from "@/service/session";
+import { ControleInsulinaButton } from "./controleInsulina-button";
+import { prisma } from "@/lib/prisma";
 
-export function ControleInsulinaCard() {
+export async function ControleInsulinaCard() {
+  const session = await useSession();
+  const userData = session?.user;
+
+  const userInsulina = await prisma.insulina.findFirst({
+    where: { usuarioId: userData?.id },
+  });
+
   return (
     <Card className="h-full md:mr-5 md:ml-0 mx-5">
       <CardHeader className="flex items-center justify-between">
@@ -19,12 +28,13 @@ export function ControleInsulinaCard() {
             <CalendarIcon />
             Última troca:
           </div>
-          <p className="font-medium text-xl">16/12/2025</p>
+          <p className="font-medium text-xl">
+            {userInsulina?.dataDeTroca
+              ? userInsulina?.dataDeTroca.toLocaleDateString("pt-BR")
+              : "--/--/----"}
+          </p>
         </div>
-        <Button className="text-center rounded-full mt-4 bg-[#259D91] text-white border">
-          <PlusCircleIcon />
-          Novo Registro de Insulina
-        </Button>
+        <ControleInsulinaButton userId={userData?.id!} />
       </CardContent>
     </Card>
   );

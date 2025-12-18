@@ -71,3 +71,30 @@ export async function updateUserData(data: any, userId: string) {
     },
   });
 }
+
+/*
+
+Função para pegar os dados da Glicemia do usuário  
+
+*/
+
+export async function findGlicemiaData(userId: string) {
+  return prisma.glicemia.findMany({
+    where: { usuarioId: userId },
+  });
+}
+
+/*
+
+Função para atualizar o Model Controle de Insulina no banco de dados
+
+*/
+
+export async function updateInsulinaData(userId: string, date: Date) {
+  return prisma.insulina.create({
+    data: {
+      dataDeTroca: date,
+      usuario: { connect: { id: userId } },
+    },
+  });
+}

@@ -2,10 +2,10 @@ import { AvisoInsulinaBadge } from "@/components/dashboard/avisoInsulina-badge";
 import { ControleInsulinaCard } from "@/components/dashboard/controleInsulina-card";
 import { GraficoGlicemicoCard } from "@/components/dashboard/graficoGlicemico-card";
 import { HistoricoRegistrosGlicemicos } from "@/components/dashboard/historicoRegistros-card";
-import { NovoRegistroGlicemico } from "@/components/dashboard/novoRegistro-dialog";
 import { UltimoRegistroGlicemico } from "@/components/dashboard/ultimoRegistro-card";
 import { authClient } from "@/lib/auth-client";
 import { prisma } from "@/lib/prisma";
+import { findGlicemiaData, prismaUserData } from "@/service/db";
 import { useSession } from "@/service/session";
 import { redirect } from "next/navigation";
 
@@ -37,6 +37,9 @@ export default async function Dashboard({ params }: Props) {
     });
   }
 
+  const dataGlicemia = await findGlicemiaData(session.user.id);
+  const userData = await prismaUserData(session.user.id);
+
   return (
     <div className="md:grid md:grid-cols-[auto_auto] grid-rows-[auto_1fr_1fr_1fr_auto] flex flex-col h-screen gap-4">
       <section className="md:col-span-3 p-4 flex justify-between items-center">
@@ -51,7 +54,10 @@ export default async function Dashboard({ params }: Props) {
         </div>
       </section>
       <section className="md:col-span-2 md:row-span-2 ">
-        <GraficoGlicemicoCard />
+        <GraficoGlicemicoCard
+          dataGlicemia={dataGlicemia}
+          userData={userData!}
+        />
       </section>
       <section>
         <UltimoRegistroGlicemico userId={session.user.id} />

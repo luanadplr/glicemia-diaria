@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
-import { useSession } from "@/service/session";
+"use client";
+
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { GraficoGlicemicoChart } from "./graficoGlicemico-chart";
 import { TrendingUpIcon } from "lucide-react";
@@ -13,22 +13,29 @@ import {
   SelectValue,
 } from "../ui/select";
 import { NovoRegistroGlicemicoButton } from "./novoRegistro-button";
+import { useState } from "react";
 
-export async function GraficoGlicemicoCard() {
-  const session = await useSession();
-  const data = session?.user;
+type Glicemia = {
+  data: Date;
+  total: number;
+  id: string;
+  aplicouInsulina: boolean;
+  hora: string;
+  observacao: string | null;
+  usuarioId: string;
+};
 
-  const glicemias = await prisma.glicemia.findMany({
-    where: { usuarioId: data?.id },
-  });
+export function GraficoGlicemicoCard({
+  userData,
+  dataGlicemia,
+}: {
+  userData: any;
+  dataGlicemia: Glicemia[];
+}) {
+  const user = userData;
+  const glicemias = dataGlicemia;
 
-  const chartData = glicemias.map((item) => ({
-    date: item.data.toLocaleDateString("pt-BR"),
-    Valor: item.total,
-  }));
-
-  const timeDate = new Date();
-  const month = timeDate.getMonth();
+  const month = new Date().getMonth();
   const meses = [
     "Janeiro",
     "Fevereiro",
@@ -44,6 +51,24 @@ export async function GraficoGlicemicoCard() {
     "Dezembro",
   ];
 
+  const [selected, setSelected] = useState(month.toString());
+
+  const handleSelect = (value: string) => {
+    setSelected(value);
+    console.log("Valor selecionado: ", value);
+  };
+
+  // Exibir dados apenas do mês selecionado
+
+  const glicemiaCadaMes = glicemias.filter(
+    (item) => item.data.getMonth() === Number(selected)
+  );
+
+  const chartData = glicemiaCadaMes.map((item) => ({
+    date: item.data.toLocaleDateString("pt-BR"),
+    Valor: item.total,
+  }));
+
   return (
     <Card className="md:ml-5 md:w-auto min-w-0 h-full min-h-0 mx-5">
       <CardHeader className="flex items-center justify-between">
@@ -53,15 +78,15 @@ export async function GraficoGlicemicoCard() {
           </div>
           <p className="font-semibold">Gráfico Glicêmico</p>
         </div>
-        <Select>
+        <Select onValueChange={handleSelect} defaultValue={selected}>
           <SelectTrigger>
-            <SelectValue placeholder={meses[month]} />
+            <SelectValue />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Meses</SelectLabel>
-              {meses.map((mes) => (
-                <SelectItem key={mes} value={mes}>
+              {meses.map((mes, index) => (
+                <SelectItem key={mes} value={index.toString()}>
                   {mes}
                 </SelectItem>
               ))}
@@ -73,12 +98,14 @@ export async function GraficoGlicemicoCard() {
         {glicemias.length === 0 ? (
           <div className="h-full flex flex-col gap-3">
             <p>Você ainda não tem nenhum registro</p>
-            <NovoRegistroGlicemicoButton userId={data?.id!} />
+            <NovoRegistroGlicemicoButton userId={user.id!} />
           </div>
+        ) : glicemiaCadaMes.length === 0 ? (
+          <p className="center">Esse mês não há registros</p>
         ) : (
           <GraficoGlicemicoChart
             chartData={chartData}
-            nivelGlicemia={data?.nivelGlicemia!}
+            nivelGlicemia={user?.nivelGlicemia!}
           />
         )}
       </CardContent>
