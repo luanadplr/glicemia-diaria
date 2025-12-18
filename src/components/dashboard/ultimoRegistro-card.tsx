@@ -1,8 +1,15 @@
 import { prisma } from "@/lib/prisma";
 import { prismaUserData } from "@/service/db";
 import { Card, CardContent, CardHeader } from "../ui/card";
-import { CalendarIcon, Clock2Icon, DropletIcon, Syringe } from "lucide-react";
+import {
+  CalendarIcon,
+  Clock2Icon,
+  DropletIcon,
+  SaladIcon,
+  Syringe,
+} from "lucide-react";
 import { NovoRegistroGlicemicoButton } from "./novoRegistro-button";
+import { Badge } from "../ui/badge";
 
 export async function UltimoRegistroGlicemico({ userId }: { userId: string }) {
   const glicemias = await prisma.glicemia.findMany({
@@ -46,11 +53,13 @@ export async function UltimoRegistroGlicemico({ userId }: { userId: string }) {
                   mg/dL
                 </span>
               </p>
-              <div className="text-sm mt-3 border rounded-full p-1 text-center">
-                {ultimaGlicemiaData?.total > dadosUser?.nivelGlicemia!
-                  ? "Alta"
-                  : "Ideal"}
-              </div>
+              {ultimaGlicemiaData?.total > dadosUser?.nivelGlicemia! ? (
+                <Badge variant="destructive" className="mt-2">
+                  Alta
+                </Badge>
+              ) : (
+                <Badge className="bg-green-700 mt-2">Ideal</Badge>
+              )}
             </div>
             <div>
               <ul>
@@ -62,13 +71,22 @@ export async function UltimoRegistroGlicemico({ userId }: { userId: string }) {
                   <Clock2Icon size={18} />
                   {ultimaGlicemiaData?.hora.slice(0, 5)}
                 </li>
-                <li className="flex gap-1 items-center text-sm">
-                  <Syringe size={18} />
-                  {ultimaGlicemiaData?.aplicouInsulina === true
-                    ? "Aplicou"
-                    : "Não aplicou"}
+                <li>
+                  <Badge variant="secondary">
+                    <Syringe size={18} />
+                    {ultimaGlicemiaData?.aplicouInsulina === true
+                      ? "Aplicou"
+                      : "Não aplicou"}
+                  </Badge>
                 </li>
-                <li className="text-sm">Em Jejum</li>
+                <li>
+                  <Badge variant="secondary">
+                    <SaladIcon />{" "}
+                    {ultimaGlicemiaData?.observacao === ""
+                      ? "--"
+                      : ultimaGlicemiaData?.observacao}
+                  </Badge>
+                </li>
               </ul>
             </div>
           </div>

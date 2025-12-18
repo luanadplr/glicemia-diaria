@@ -36,7 +36,7 @@ export function HistoricoRegistrosLista({
                     mg/dL
                   </span>
                 </p>
-                <p className="text-sm">Observação</p>
+                <p className="text-sm">{glicemia.observacao}</p>
               </div>
             </div>
             <div className="">
@@ -64,7 +64,7 @@ export function HistoricoRegistrosLista({
                     mg/dL
                   </span>
                 </p>
-                <p className="text-sm">Observação</p>
+                <p className="text-sm">{glicemia.observacao}</p>
               </div>
             </div>
             <div className="">

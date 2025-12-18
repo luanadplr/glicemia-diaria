@@ -1,5 +1,5 @@
 import { MenuSidebar } from "@/components/dashboard/menu-sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useSession } from "@/service/session";
 import { ReactNode } from "react";
 
@@ -12,7 +12,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
       <MenuSidebar data={data} />
-      <main className="w-screen">{children}</main>
+      <main className="w-screen mix-w-0">{children}</main>
     </SidebarProvider>
   );
 }

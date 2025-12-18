@@ -3,6 +3,7 @@ import { ControleInsulinaCard } from "@/components/dashboard/controleInsulina-ca
 import { GraficoGlicemicoCard } from "@/components/dashboard/graficoGlicemico-card";
 import { HistoricoRegistrosGlicemicos } from "@/components/dashboard/historicoRegistros-card";
 import { UltimoRegistroGlicemico } from "@/components/dashboard/ultimoRegistro-card";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { authClient } from "@/lib/auth-client";
 import { prisma } from "@/lib/prisma";
 import { findGlicemiaData, prismaUserData } from "@/service/db";
@@ -42,15 +43,21 @@ export default async function Dashboard({ params }: Props) {
 
   return (
     <div className="md:grid md:grid-cols-[auto_auto] grid-rows-[auto_1fr_1fr_1fr_auto] flex flex-col h-screen gap-4">
-      <section className="md:col-span-3 p-4 flex justify-between items-center">
-        <div>
-          <h1 className="font-bold text-xl text-[#259D91]">Seu Dashboard</h1>
-          <p className="text-muted-foreground text-[13px]">
-            Seja Bem Vindo, {session.user.name}
-          </p>
+      <section className="md:col-span-3 p-4 md:flex justify-between items-center">
+        <div className="flex flex-row items-center justify-between">
+          <div>
+            <h1 className="font-bold text-xl text-[#259D91]">Seu Dashboard</h1>
+            <p className="text-muted-foreground text-[13px]">
+              Seja Bem Vindo, {session.user.name}
+            </p>
+          </div>
+          <SidebarTrigger className="md:hidden" />
         </div>
-        <div>
-          <AvisoInsulinaBadge />
+        <div className="mt-2 md:mt-0">
+          <AvisoInsulinaBadge
+            nivelGlicemia={userData?.nivelGlicemia!}
+            userId={userData?.id!}
+          />
         </div>
       </section>
       <section className="md:col-span-2 md:row-span-2 ">
@@ -68,7 +75,7 @@ export default async function Dashboard({ params }: Props) {
       <section className="md:col-span-3">
         <HistoricoRegistrosGlicemicos userId={session.user.id} />
       </section>
-      <section className="md:col-span-3 bg-foreground">
+      <section className="md:col-span-3 bg-foreground md:w-auto min-w-0 h-full">
         <div>Rodapé simples</div>
       </section>
     </div>

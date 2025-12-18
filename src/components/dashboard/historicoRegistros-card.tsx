@@ -21,7 +21,7 @@ export async function HistoricoRegistrosGlicemicos({
   dataGlicemia.reverse();
 
   return (
-    <Card className="md:w-auto md:mx-5">
+    <Card className="md:ml-5 md:w-auto min-w-0 h-full min-h-0 mx-5">
       <CardHeader>
         <div className="flex gap-3 items-center">
           <div className="bg-chart-2 opacity-60 rounded-md p-1">

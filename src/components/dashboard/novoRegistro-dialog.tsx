@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDownIcon, PlusCircle } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -7,13 +7,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import {
-  Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "../ui/dialog";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Controller } from "react-hook-form";
@@ -55,6 +53,7 @@ export function NovoRegistroGlicemico({ userId }: Props) {
     console.log(formData);
     await glicemiaUpdate(formData, userId);
     form.reset();
+    window.location.reload();
   }
   return (
     <DialogContent className="sm:max-w-[425px]">
@@ -160,6 +159,9 @@ export function NovoRegistroGlicemico({ userId }: Props) {
           {/* OBSERVAÇÃO */}
           <Label htmlFor="observacao">Observação</Label>
           <Input {...form.register("observacao")} type="text" id="observacao" />
+          <p className="text-sm text-muted-foreground">
+            Ex.: Em Jejum, Após Almoço, Após Janta...
+          </p>
         </div>
         <DialogFooter className="mt-4">
           <Button type="submit">Salvar</Button>
