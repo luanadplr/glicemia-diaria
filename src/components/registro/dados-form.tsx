@@ -10,10 +10,12 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Field, FieldError } from "../ui/field";
 import { Button } from "../ui/button";
-import { updateUserData } from "@/service/db";
-import { redirect } from "next/navigation";
+import { prismaHasUsername, updateUserData } from "@/service/db";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { clientSession } from "@/service/client-session";
+import { createUsername } from "@/utils/create-username";
+import { toast } from "sonner";
 
 const schemaFormDados = z.object({
   username: z.string().min(1, "O username é obrigatório"),
@@ -37,20 +39,22 @@ export function DadosForm() {
   });
 
   const userId = session.session.data?.user.id;
+  const router = useRouter();
 
   async function onSubmit(formData: FormDados) {
     setLoading(true);
 
-    try {
-      await updateUserData(formData, userId!);
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
+    const newUsername = createUsername(formData.username);
+    const hasUsername = await prismaHasUsername(newUsername);
 
-    redirect("/dashboard/" + formData.username);
+    if (hasUsername.data) {
+      setLoading(false);
+      toast.error(hasUsername.error);
+      form.reset();
+    } else {
+      await updateUserData(formData, userId!, newUsername);
+      router.push("/dashboard/" + newUsername);
+    }
   }
 
   return (

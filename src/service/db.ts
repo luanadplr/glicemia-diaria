@@ -30,6 +30,30 @@ export async function prismaUserData(userId: string) {
 
 /*
 
+Função para verificar se username já foi cadastrado
+
+*/
+
+export async function prismaHasUsername(username: string) {
+  const hasUsername = await prisma.user.findFirst({
+    where: { username },
+  });
+
+  if (hasUsername) {
+    return {
+      data: true,
+      error: "Username ja cadastrado",
+    };
+  } else {
+    return {
+      data: false,
+      error: null,
+    };
+  }
+}
+
+/*
+
 Função para registrar novo dado de Glicemia no Banco de dados
 
 */
@@ -62,11 +86,15 @@ export async function glicemiaUpdate(data: Glicemia, userId: string) {
 
 */
 
-export async function updateUserData(data: any, userId: string) {
+export async function updateUserData(
+  data: any,
+  userId: string,
+  username: string
+) {
   return prisma.user.update({
     where: { id: userId },
     data: {
-      username: data.username,
+      username,
       nivelGlicemia: data.nivelGlicemia,
     },
   });
