@@ -157,3 +157,15 @@ export async function editarPerfilNivelGlicemia(
     },
   });
 }
+
+/*
+
+Função para apagar dado do banco de dados
+
+*/
+
+export async function deleteGlicemiaData(id: string) {
+  return prisma.glicemia.delete({
+    where: { id },
+  });
+}

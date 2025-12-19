@@ -1,5 +1,5 @@
 "use client";
-import { EditIcon, HeartPulse, PlusCircleIcon } from "lucide-react";
+import { DropletIcon, EditIcon, HeartPulse } from "lucide-react";
 import { Logo } from "../logo";
 import {
   Sidebar,
@@ -9,8 +9,9 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
 } from "../ui/sidebar";
-import { Button } from "../ui/button";
 import { LogoutButton } from "./logout-button";
 import { NovoRegistroGlicemicoButton } from "./novoRegistro-button";
 import { useRouter } from "next/navigation";
@@ -41,17 +42,27 @@ export function MenuSidebar({ data }: Props) {
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel className="text-white">Menu</SidebarGroupLabel>
+            <SidebarGroupLabel className="text-white">Perfil</SidebarGroupLabel>
             <SidebarContent>
               <SidebarMenu className="flex flex-col items-start">
-                <Button
-                  variant="link"
-                  className="text-white"
-                  onClick={() => router.push("/perfil")}
-                >
-                  <EditIcon />
-                  Editar Perfil
-                </Button>
+                <SidebarMenuItem key="username">
+                  <SidebarMenuButton
+                    onClick={() => router.push("/perfil/username")}
+                    className="hover:bg-[#ffffff2f] hover:text-white"
+                  >
+                    <EditIcon />
+                    Alterar Username
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem key="glicemia">
+                  <SidebarMenuButton
+                    onClick={() => router.push("/perfil/glicemia")}
+                    className="hover:bg-[#ffffff2f] hover:text-white"
+                  >
+                    <DropletIcon />
+                    Alterar Nível da Glicemia
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
               </SidebarMenu>
             </SidebarContent>
           </SidebarGroup>

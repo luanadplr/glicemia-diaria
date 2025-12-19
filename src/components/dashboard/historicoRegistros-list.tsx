@@ -1,8 +1,15 @@
 "use client";
 
-import { ArrowDownIcon, TrendingDownIcon, TrendingUpIcon } from "lucide-react";
+import {
+  ArrowDownIcon,
+  Trash2Icon,
+  TrendingDownIcon,
+  TrendingUpIcon,
+} from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { deleteGlicemiaData } from "@/service/db";
+import { useRouter } from "next/navigation";
 
 export function HistoricoRegistrosLista({
   dataGlicemia,
@@ -12,9 +19,17 @@ export function HistoricoRegistrosLista({
   nivelGlicemia: number;
 }) {
   const [listCount, setListCount] = useState(5);
+  const [list, setList] = useState(dataGlicemia);
 
   function handleShowMore() {
     setListCount((prev) => prev + 5);
+  }
+
+  const router = useRouter();
+
+  async function handleDeleteData(glicemiaId: string) {
+    await deleteGlicemiaData(glicemiaId);
+    router.refresh();
   }
 
   return (
@@ -39,13 +54,24 @@ export function HistoricoRegistrosLista({
                 <p className="text-sm">{glicemia.observacao}</p>
               </div>
             </div>
-            <div className="">
-              <p>{`${glicemia.data.getDate()}/${
-                glicemia.data.getMonth() + 1
-              }/${glicemia.data.getFullYear()}`}</p>
-              <p className="text-right text-sm text-muted-foreground">
-                {glicemia.hora.slice(0, 5)}
-              </p>
+            <div className="flex items-center gap-2">
+              <div>
+                <p>{`${glicemia.data.getDate()}/${
+                  glicemia.data.getMonth() + 1
+                }/${glicemia.data.getFullYear()}`}</p>
+                <p className="text-right text-sm text-muted-foreground">
+                  {glicemia.hora.slice(0, 5)}
+                </p>
+              </div>
+              <div className="text-sm">
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  onClick={() => handleDeleteData(glicemia.id)}
+                >
+                  <Trash2Icon />
+                </Button>
+              </div>
             </div>
           </li>
         ) : (
@@ -67,13 +93,24 @@ export function HistoricoRegistrosLista({
                 <p className="text-sm">{glicemia.observacao}</p>
               </div>
             </div>
-            <div className="">
-              <p>{`${glicemia.data.getDate()}/${
-                glicemia.data.getMonth() + 1
-              }/${glicemia.data.getFullYear()}`}</p>
-              <p className="text-right text-sm text-muted-foreground">
-                {glicemia.hora.slice(0, 5)}
-              </p>
+            <div className="flex items-center gap-2">
+              <div>
+                <p>{`${glicemia.data.getDate()}/${
+                  glicemia.data.getMonth() + 1
+                }/${glicemia.data.getFullYear()}`}</p>
+                <p className="text-right text-sm text-muted-foreground">
+                  {glicemia.hora.slice(0, 5)}
+                </p>
+              </div>
+              <div className="text-sm">
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  onClick={() => handleDeleteData(glicemia.id)}
+                >
+                  <Trash2Icon />
+                </Button>
+              </div>
             </div>
           </li>
         )

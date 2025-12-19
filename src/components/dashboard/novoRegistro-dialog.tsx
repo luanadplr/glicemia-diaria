@@ -19,6 +19,7 @@ import { glicemiaUpdate } from "@/service/db";
 import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Calendar } from "../ui/calendar";
+import { useRouter } from "next/navigation";
 
 const dadoGlicemicoSchema = z.object({
   total: z.number().min(1, "O valor da glicemia é obrigatório"),
@@ -49,11 +50,12 @@ export function NovoRegistroGlicemico({ userId }: Props) {
     },
   });
 
+  const router = useRouter();
+
   async function onSubmit(formData: dadoGlicemico) {
-    console.log(formData);
     await glicemiaUpdate(formData, userId);
     form.reset();
-    window.location.reload();
+    router.refresh();
   }
   return (
     <DialogContent className="sm:max-w-[425px]">
