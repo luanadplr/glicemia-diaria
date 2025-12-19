@@ -119,10 +119,24 @@ Função para atualizar o Model Controle de Insulina no banco de dados
 */
 
 export async function updateInsulinaData(userId: string, date: Date) {
-  return prisma.insulina.create({
+  const insulina = await prisma.insulina.findMany({
+    where: { usuarioId: userId },
+  });
+
+  if (insulina.length === 0) {
+    await prisma.insulina.create({
+      data: {
+        usuario: { connect: { id: userId } },
+        dataDeTroca: date,
+      },
+    });
+  }
+
+  return prisma.insulina.update({
+    where: { usuarioId: userId },
     data: {
-      dataDeTroca: date,
       usuario: { connect: { id: userId } },
+      dataDeTroca: date,
     },
   });
 }

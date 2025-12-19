@@ -19,10 +19,9 @@ export function HistoricoRegistrosLista({
   nivelGlicemia: number;
 }) {
   const [listCount, setListCount] = useState(5);
-  const [list, setList] = useState(dataGlicemia);
 
   function handleShowMore() {
-    setListCount((prev) => prev + 5);
+    setListCount((event) => event + 5);
   }
 
   const router = useRouter();

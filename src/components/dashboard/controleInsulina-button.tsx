@@ -16,10 +16,10 @@ export function ControleInsulinaButton({ userId }: { userId: string }) {
   return (
     <Button
       onClick={handleInsulinaButton}
-      className="text-center rounded-full mt-4 bg-[#259D91] text-white border"
+      className="text-center rounded-full mt-4 bg-[#259D91] text-white border hover:bg-[#259d91c1]"
     >
       <PlusCircleIcon />
-      Novo Registro de Insulina
+      Atualizar data de troca da Insulina
     </Button>
   );
 }
