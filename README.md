@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 🫀 Glicemia Diária
 
-## Getting Started
+Projeto de Monitoramento Glicêmico para facilitar o registro e acompanhamento de dados de Glicemia do usuário
 
-First, run the development server:
+## Funcionalidades
+
+### 👤 Autentificação
+
+- Login com Email/Senha
+- Cadastro de novos usuários
+
+### 🩸 Dashboard
+
+- Gráfico Glicêmico separado por meses
+- Último registro de Glicemia
+- Acompanhamento de Glicemia (Caso Alta ou Baixa)
+- Histórico de registros glicêmicos com data e hora
+- Registro de novo dado glicêmico
+
+## Tecnologias Utilizadas
+
+- Next.js
+- Prisma
+- PostgreSQL
+- Better Auth
+- shadcn
+- zod
+- React-Hook-Form
+- sonner
+- Tailwind CSS
+
+## Como Executar
 
 ```bash
+# 1. Clonar o repositório
+git clone https://github.com/luanadplr/glicemia-diaria
+
+# 2. Navegar até o diretório do projeto
+cd glicemia-diaria
+
+# 3. Instalar dependências
+npm install
+# ou com yarn
+yarn install
+# ou com pnpm
+pnpm install
+
+# 4. Configurar variáveis de ambiente (opcional)
+cp .env.example .env
+
+# 5. Iniciar servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# ou
+yarn run dev
+# ou
+pnpm run dev
+
+# 6. Abrir no navegador
+# O app abrirá automaticamente em http://localhost:3000
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
