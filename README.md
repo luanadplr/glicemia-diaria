@@ -4,7 +4,7 @@ Projeto de Monitoramento Glicêmico para facilitar o registro e acompanhamento d
 
 ## Funcionalidades
 
-### 👤 Autentificação
+### 👤 Autenticação
 
 - Login com Email/Senha
 - Cadastro de novos usuários
