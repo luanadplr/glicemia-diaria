@@ -126,3 +126,34 @@ export async function updateInsulinaData(userId: string, date: Date) {
     },
   });
 }
+
+/*
+
+Função para atualizar os dados no banco de dados
+no botão Editar Perfil
+
+*/
+
+export async function editarPerfilUsername(
+  userId: string,
+  username: string | undefined
+) {
+  return prisma.user.update({
+    where: { id: userId },
+    data: {
+      username: username,
+    },
+  });
+}
+
+export async function editarPerfilNivelGlicemia(
+  userId: string,
+  nivelGlicemia: number | undefined
+) {
+  return prisma.user.update({
+    where: { id: userId },
+    data: {
+      nivelGlicemia: nivelGlicemia,
+    },
+  });
+}

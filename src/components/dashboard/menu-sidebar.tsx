@@ -13,6 +13,7 @@ import {
 import { Button } from "../ui/button";
 import { LogoutButton } from "./logout-button";
 import { NovoRegistroGlicemicoButton } from "./novoRegistro-button";
+import { useRouter } from "next/navigation";
 
 interface Props {
   data: {
@@ -22,6 +23,8 @@ interface Props {
 }
 
 export function MenuSidebar({ data }: Props) {
+  const router = useRouter();
+
   return (
     <Sidebar>
       <div className="bg-[#259D91] h-full text-white p-2">
@@ -41,7 +44,11 @@ export function MenuSidebar({ data }: Props) {
             <SidebarGroupLabel className="text-white">Menu</SidebarGroupLabel>
             <SidebarContent>
               <SidebarMenu className="flex flex-col items-start">
-                <Button variant="link" className="text-white">
+                <Button
+                  variant="link"
+                  className="text-white"
+                  onClick={() => router.push("/perfil")}
+                >
                   <EditIcon />
                   Editar Perfil
                 </Button>
