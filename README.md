@@ -45,8 +45,8 @@ yarn install
 # ou com pnpm
 pnpm install
 
-# 4. Configurar variáveis de ambiente (opcional)
-cp .env.example .env
+# 4. Configurar variáveis de ambiente
+seguir o modelo .env.example
 
 # 5. Iniciar servidor de desenvolvimento
 npm run dev

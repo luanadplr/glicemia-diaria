@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { prismaUserData } from "@/service/db";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import {
+  AlertTriangleIcon,
   CalendarIcon,
   Clock2Icon,
   DropletIcon,
@@ -53,7 +54,11 @@ export async function UltimoRegistroGlicemico({ userId }: { userId: string }) {
                   mg/dL
                 </span>
               </p>
-              {ultimaGlicemiaData?.total > dadosUser?.nivelGlicemia! ? (
+              {ultimaGlicemiaData?.total >= 600 ? (
+                <Badge variant="destructive" className="mt-2">
+                  <AlertTriangleIcon /> Muito Alta
+                </Badge>
+              ) : ultimaGlicemiaData?.total > dadosUser?.nivelGlicemia! ? (
                 <Badge variant="destructive" className="mt-2">
                   Alta
                 </Badge>

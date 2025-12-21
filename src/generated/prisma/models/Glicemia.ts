@@ -305,7 +305,7 @@ export type GlicemiaCreateInput = {
   total: number
   aplicouInsulina?: boolean
   data?: Date | string
-  hora: string
+  hora?: string
   observacao?: string | null
   createdAt?: Date | string
   usuario: Prisma.UserCreateNestedOneWithoutTotalGlicemiaInput
@@ -316,7 +316,7 @@ export type GlicemiaUncheckedCreateInput = {
   total: number
   aplicouInsulina?: boolean
   data?: Date | string
-  hora: string
+  hora?: string
   observacao?: string | null
   createdAt?: Date | string
   usuarioId: string
@@ -349,7 +349,7 @@ export type GlicemiaCreateManyInput = {
   total: number
   aplicouInsulina?: boolean
   data?: Date | string
-  hora: string
+  hora?: string
   observacao?: string | null
   createdAt?: Date | string
   usuarioId: string
@@ -498,7 +498,7 @@ export type GlicemiaCreateWithoutUsuarioInput = {
   total: number
   aplicouInsulina?: boolean
   data?: Date | string
-  hora: string
+  hora?: string
   observacao?: string | null
   createdAt?: Date | string
 }
@@ -508,7 +508,7 @@ export type GlicemiaUncheckedCreateWithoutUsuarioInput = {
   total: number
   aplicouInsulina?: boolean
   data?: Date | string
-  hora: string
+  hora?: string
   observacao?: string | null
   createdAt?: Date | string
 }
@@ -558,7 +558,7 @@ export type GlicemiaCreateManyUsuarioInput = {
   total: number
   aplicouInsulina?: boolean
   data?: Date | string
-  hora: string
+  hora?: string
   observacao?: string | null
   createdAt?: Date | string
 }

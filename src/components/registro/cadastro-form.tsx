@@ -17,6 +17,8 @@ import {
   InputGroupInput,
 } from "../ui/input-group";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const signupSchema = z
   .object({
@@ -55,8 +57,10 @@ export function CadastroForm() {
       : setSeePassword("password");
   }
 
+  const router = useRouter();
+
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full max-w-md mx-5 my-0">
       <CardHeader>
         <div className="text-sm">
           <Logo />
@@ -133,6 +137,12 @@ export function CadastroForm() {
             </Button>
           </form>
         </Form>
+        <div className="flex flex-col items-center text-sm mt-2">
+          Já possui uma conta?
+          <Link href="/login" replace className="underline">
+            Faça Login.
+          </Link>
+        </div>
       </CardContent>
     </Card>
   );

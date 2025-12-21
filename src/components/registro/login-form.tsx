@@ -79,7 +79,7 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-md flex flex-col justify-between">
+    <Card className="w-full max-w-md mx-5 my-0 flex flex-col justify-between">
       <CardHeader>
         <div className="text-sm">
           <Logo />

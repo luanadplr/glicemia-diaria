@@ -8,7 +8,7 @@ export default async function Login() {
   if (session) redirect("/dashboard/" + session.user.username);
 
   return (
-    <div className="bg-linear-to-l from-teal-300 to-emerald-400 w-full h-screen flex flex-col items-center justify-center">
+    <div className="bg-[#259D91] w-full h-screen flex items-center justify-center">
       <LoginForm />
     </div>
   );

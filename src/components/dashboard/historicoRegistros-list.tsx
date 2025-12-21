@@ -2,6 +2,8 @@
 
 import {
   ArrowDownIcon,
+  SaladIcon,
+  SyringeIcon,
   Trash2Icon,
   TrendingDownIcon,
   TrendingUpIcon,
@@ -10,6 +12,7 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { deleteGlicemiaData } from "@/service/db";
 import { useRouter } from "next/navigation";
+import { Badge } from "../ui/badge";
 
 export function HistoricoRegistrosLista({
   dataGlicemia,
@@ -50,7 +53,19 @@ export function HistoricoRegistrosLista({
                     mg/dL
                   </span>
                 </p>
-                <p className="text-sm">{glicemia.observacao}</p>
+                <div className="flex gap-1">
+                  {glicemia?.observacao !== "" && (
+                    <Badge variant="secondary">
+                      <SaladIcon /> {glicemia?.observacao}
+                    </Badge>
+                  )}
+                  <Badge variant="secondary">
+                    <SyringeIcon />
+                    {glicemia?.aplicouInsulina === true
+                      ? "Aplicou"
+                      : "Não aplicou"}
+                  </Badge>
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -89,7 +104,19 @@ export function HistoricoRegistrosLista({
                     mg/dL
                   </span>
                 </p>
-                <p className="text-sm">{glicemia.observacao}</p>
+                <div className="flex gap-1">
+                  {glicemia?.observacao !== "" && (
+                    <Badge variant="secondary">
+                      <SaladIcon /> {glicemia?.observacao}
+                    </Badge>
+                  )}
+                  <Badge variant="secondary">
+                    <SyringeIcon />
+                    {glicemia?.aplicouInsulina === true
+                      ? "Aplicou"
+                      : "Não aplicou"}
+                  </Badge>
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-2">
