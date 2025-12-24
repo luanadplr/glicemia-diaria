@@ -2,6 +2,7 @@
 
 import {
   ArrowDownIcon,
+  ArrowUpIcon,
   SaladIcon,
   SyringeIcon,
   Trash2Icon,
@@ -25,6 +26,10 @@ export function HistoricoRegistrosLista({
 
   function handleShowMore() {
     setListCount((event) => event + 5);
+  }
+
+  function handleShowLess() {
+    setListCount(5);
   }
 
   const router = useRouter();
@@ -53,7 +58,7 @@ export function HistoricoRegistrosLista({
                     mg/dL
                   </span>
                 </p>
-                <div className="flex gap-1">
+                <div className="flex md:flex-row flex-col gap-1">
                   {glicemia?.observacao !== "" && (
                     <Badge variant="secondary">
                       <SaladIcon /> {glicemia?.observacao}
@@ -104,7 +109,7 @@ export function HistoricoRegistrosLista({
                     mg/dL
                   </span>
                 </p>
-                <div className="flex gap-1">
+                <div className="flex md:flex-row flex-col gap-1">
                   {glicemia?.observacao !== "" && (
                     <Badge variant="secondary">
                       <SaladIcon /> {glicemia?.observacao}
@@ -146,6 +151,14 @@ export function HistoricoRegistrosLista({
           <Button variant="link" onClick={handleShowMore}>
             <ArrowDownIcon />
             Mostrar Mais
+          </Button>
+        </li>
+      )}
+      {listCount > dataGlicemia.length && (
+        <li className="text-right mt-2 mb-0">
+          <Button variant="link" onClick={handleShowLess}>
+            <ArrowUpIcon />
+            Mostrar Menos
           </Button>
         </li>
       )}

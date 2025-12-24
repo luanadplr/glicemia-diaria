@@ -20,6 +20,7 @@ import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Calendar } from "../ui/calendar";
 import { useRouter } from "next/navigation";
+import { Badge } from "../ui/badge";
 
 const dadoGlicemicoSchema = z.object({
   total: z.number().min(1, "O valor da glicemia é obrigatório"),
@@ -38,6 +39,7 @@ type Props = {
 export function NovoRegistroGlicemico({ userId }: Props) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<Date | undefined>();
+  const [value, setValue] = useState("");
 
   const form = useForm<dadoGlicemico>({
     resolver: zodResolver(dadoGlicemicoSchema),
@@ -53,10 +55,16 @@ export function NovoRegistroGlicemico({ userId }: Props) {
   const router = useRouter();
 
   async function onSubmit(formData: dadoGlicemico) {
+    formData.observacao = value;
     await glicemiaUpdate(formData, userId);
     form.reset();
     router.refresh();
   }
+
+  function handleInputChange(evt: any) {
+    setValue(evt.target.value);
+  }
+
   return (
     <DialogContent className="sm:max-w-[425px]">
       <DialogHeader className="text-left">
@@ -160,10 +168,37 @@ export function NovoRegistroGlicemico({ userId }: Props) {
           />
           {/* OBSERVAÇÃO */}
           <Label htmlFor="observacao">Observação</Label>
-          <Input {...form.register("observacao")} type="text" id="observacao" />
-          <p className="text-sm text-muted-foreground">
-            Ex.: Em Jejum, Após Almoço, Após Janta...
-          </p>
+          <Input
+            {...form.register("observacao")}
+            type="text"
+            id="observacao"
+            value={value}
+            onChange={handleInputChange}
+            maxLength={15}
+          />
+          <div className="flex flex-wrap text-sm gap-1">
+            <Badge
+              variant="default"
+              onClick={() => setValue("Em Jejum")}
+              className="cursor-pointer bg-[#259D91]"
+            >
+              Em Jejum
+            </Badge>
+            <Badge
+              variant="default"
+              onClick={() => setValue("Após almoço")}
+              className="cursor-pointer  bg-[#259D91]"
+            >
+              Após almoço
+            </Badge>
+            <Badge
+              variant="default"
+              onClick={() => setValue("Após Janta")}
+              className="cursor-pointer  bg-[#259D91]"
+            >
+              Após Janta
+            </Badge>
+          </div>
         </div>
         <DialogFooter className="mt-4">
           <Button type="submit">Salvar</Button>
